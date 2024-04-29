@@ -8,7 +8,7 @@
 <body>
     <h2>Inscription et abonnement</h2>
     <form action="abonnement.php" method="post">
-    	<label for="email">Email :</label>
+        <label for="email">Email :</label>
         <input type="email" id="email" name="email" required><br>
         <label for="num">Numéro de téléphone :</label>
         <input type="num" id="num" name="num" required><br>
@@ -21,7 +21,7 @@
         </select><br>
         Date de naissance: <input type="date" name="naissance"><br>
         <label for="nbEnfants">Nombre d'enfants :</label>
-        <input type="number" id="nbEnfants" min="0" max="10" required>
+        <input type="number" id="nbEnfants" min="0" max="10" required onchange="generateChildAgeFields()"><br>
         <div id="enfantsInputs"></div>
 
         Profession: <input type="text" name="profession"><br>
@@ -38,5 +38,6 @@
 
         <input type="submit" value="S'inscrire et s'abonner">
     </form>
+    <script src="abonnement.js"></script>
 </body>
 </html>
