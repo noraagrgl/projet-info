@@ -13,18 +13,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST["description"];
     $photo_profil = $_POST["photo_profil"];
     $abonnement = $_POST["abonnement"];
-    
- 
+
+
     $fichier_csv = "utilisateurs.csv";
     
     $fichier = fopen($fichier_csv, "a");
-    
-  
+
     if ($fichier) {
-     
+
         fputcsv($fichier, array($email, $num, $pseudo, $mdp, $sexe, $naissance, $nbEnfants, $profession, $lieu_residence, $situation_amoureuse, $description, $photo_profil, $abonnement));
         
-        // Fermer le fichier
         fclose($fichier);
         
         echo "Les informations ont été enregistrées avec succès.";
