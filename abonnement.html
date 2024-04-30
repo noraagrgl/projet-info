@@ -3,26 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription et abonnement</title>
+    <title>CY-Rencontres</title>
+    <link rel="stylesheet" type="text/CSS" href="abonnement.css">
+    <script src="abonnement.js"></script>
 </head>
 <body>
-    <h2>Inscription et abonnement</h2>
-    <form action="abonnement.php" method="post">
+      <h1>Inscription et abonnement</h1>
+  <div id="container">
+
+
+
+
+    <div id="inscription">
+
+      <form action="abonnement.php" method="post">
         <label for="email">Email :</label>
         <input type="email" id="email" name="email" required><br>
+
         <label for="num">Numéro de téléphone :</label>
         <input type="num" id="num" name="num" required><br>
+
         Pseudo: <input type="text" name="pseudo"><br>
         Mot de passe: <input type="password" name="mdp"><br>
-        Sexe: 
+        Sexe:
+
         <select name="sexe">
             <option value="homme">Homme</option>
             <option value="femme">Femme</option>
         </select><br>
+
         Date de naissance: <input type="date" name="naissance"><br>
         <label for="nbEnfants">Nombre d'enfants :</label>
         <input type="number" id="nbEnfants" min="0" max="10" required onchange="generateChildAgeFields()"><br>
-        <div id="enfantsInputs"></div>
+
+        <div id="enfantsInputs">
 
         Profession: <input type="text" name="profession"><br>
         Ville de résidence: <input type="text" name="lieu_residence"><br>
@@ -30,14 +44,23 @@
         Description: <input type="text" name="description"><br>
         Photo de profil: <input type="file" name="photo_profil"><br>
 
+      </div>
+
+    </div>
+
+    <div id="abonnement">
+
         <h3>Choisissez votre abonnement :</h3>
         <input type="radio" name="abonnement" value="gratuit" checked> Gratuit<br>
-        <input type="radio" name="abonnement" value="mensuel"> Abonnement mensuel (9£/mois)<br>
-        <input type="radio" name="abonnement" value="trimestriel"> Abonnement trimestriel (50£/six mois)<br>
-        <input type="radio" name="abonnement" value="annuel"> Abonnement annuel (80£/an)<br>
+        <input type="radio" name="abonnement" value="mensuel"> Abonnement mensuel (9€/mois)<br>
+        <input type="radio" name="abonnement" value="trimestriel"> Abonnement trimestriel (50€/six mois)<br>
+        <input type="radio" name="abonnement" value="annuel"> Abonnement annuel (80€/an)<br>
 
-        <input type="submit" value="S'inscrire et s'abonner">
-    </form>
-    <script src="abonnement.js"></script>
+        <br><br><br><br><br>
+        <input id="boutonEnvoie" type="submit" value="S'inscrire et s'abonner">
+      </form>
+
+      <script src="abonnement.js"></script>
+    </div>
 </body>
 </html>
