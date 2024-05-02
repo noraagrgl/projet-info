@@ -10,13 +10,16 @@
 <body>
     <h1>Connexion</h1>
     <div id="container">
-        <form action="connexion.php" method="post">
+        <form id="connexionForm" action="connexion.php" method="post">
             <label for="email">Email : </label><br>
-            <input type="text" id="pseudo" name="pseudo" required><br>
+            <input type="text" id="email" name="email" required><br>
             <label for="mot_de_passe">Mot de passe :</label><br>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required><br><br><br>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" required><br><br>
+            <span id="errorMessage" class="error"></span><br><br>
             <input id="boutonEnvoie" type="submit" value="Se connecter">
         </form>
+
+
     </div>
 </body>
 </html>
