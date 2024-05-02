@@ -33,18 +33,26 @@
         </select><br>
 
         Date de naissance: <input type="date" name="naissance"><br>
-        <label for="nbEnfants">Nombre d'enfants :</label>
+       
+        <!--<label for="nbEnfants">Nombre d'enfants :</label>
         <input type="number" id="nbEnfants" min="0" max="10" required onchange="generateChildAgeFields()"><br>
 
         <div id="enfantsInputs">
+        </div>-->
 
         Profession: <input type="text" name="profession"><br>
         Ville de résidence: <input type="text" name="lieu_residence"><br>
-        Situation amoureuse: <input type="text" name="situation_amoureuse"><br>
+        Type de relation recherché:
+        <select name="type_relation">
+            <option value="serieux">Relation sérieuse</option>
+            <option value="leger">Relation légère</option>
+            <option value="unSoir">Relation d'un soir</option>
+        </select><br>
+        
         Description: <input type="text" name="description"><br>
         Photo de profil: <input type="file" name="photo_profil"><br>
 
-      </div>
+      
 
     </div>
 
