@@ -1,6 +1,6 @@
 <?php
     session_start();
- 
+
 ?>
 
 
@@ -21,7 +21,29 @@
       <p>Pseudo: <?= $_SESSION['pseudo'] ?></p>
       <p>Email: <?= $_SESSION['email'] ?></p>
       <p>Date d'inscription: <?= $_SESSION['date_inscription'] ?></p>
-      <p>Sexe: <?= $_SESSION['sexe'] ?></p>  
- 
+      <p>Sexe: <?= $_SESSION['sexe'] ?></p>
+
+      <h2>Vous pouvez rencontrer: </h2>
+
+      <?php
+      /*
+      //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
+      while (($ligne = fgetcsv($fichier)) !== false) {
+
+            //Verification pour presenter le sexe oppose
+            if($_SESSION["sexe"] != $ligne[4]){
+              //Afficher cet utilisateur pseudo + description
+              //Crer un "dictionnaire" ou on va mettre ces personnes pour les recuperer plus tard dans la page
+              global $user_print = (
+                "pseudo" => $ligne[2];
+                "description" => $ligne[9];
+              );
+          }
+      }
+      */  
+      ?>
+
+      <!--<p><b><?= $user_print['pseudo'] ?></b></p>-->
+
 </body>
 </html>
