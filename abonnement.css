@@ -1,6 +1,9 @@
 body{
   background-image: url("fond2.jpg");
   font-family: fantasy;
+  overflow:hidden;
+  background-repeat: no-repeat;
+  background-position: center;
   font-size: 25px;
 }
 
