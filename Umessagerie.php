@@ -19,7 +19,7 @@
         <span id="Profil" class="bouton"> <a href="Uprofil.php">Profil</a></span>
         <span id="Messagerie" class="bouton"> <a href="Umessagerie.php">Messagerie</a></span>
         <span id="Parametres" class="bouton"> <a href="Uparametre.php">Paramètres</a></span>
-        <span id="Deconnexion" class="bouton"> <a href="acceuil.html">Déconnexion</a></span>
+        <span id="Deconnexion" class="bouton"> <a href="deconnexion.php">Déconnexion</a></span>
     </div>
 
       <h1>Messagerie</h1>
