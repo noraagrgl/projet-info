@@ -1,6 +1,9 @@
 <?php
+
+	session_start();
 	session_destroy();
 
-	header("location:acceuil.html")
+	header("location:acceuil.html");
+	exit;
 
 ?>
