@@ -33,6 +33,7 @@ if(isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
                 $_SESSION['photo_profil'] = $ligne[10];
                 $_SESSION['abonnement'] = $ligne[11];
                 $_SESSION['date_inscription'] = $ligne[12];
+                $_SESSION['loggedin'] = true;
 
                 //Les identifiants sont corrects
                 $tmp ++;
