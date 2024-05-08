@@ -34,7 +34,7 @@
 
 	
       <div id="main">
-          <p><b>Photo de profil:</b> <?= $_SESSION['photo_profil'] ?></p>
+          <img src="image/<?= $_SESSION['photo_profil'] ?>" class="image">
           <p><b>Pseudo:</b> <?= $_SESSION['pseudo'] ?></p>
           <p><b>Description:</b> <?= $_SESSION['description'] ?></p>
           <p><b>Mot de passe:</b> <?= $_SESSION['mdp'] ?></p>
