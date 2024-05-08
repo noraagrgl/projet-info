@@ -33,26 +33,44 @@
 
 
       <h1>Bienvenue <?= $_SESSION['pseudo'] ?> </h1>
-
+      <br><br><br>
     
     
 
       <?php
-      /*
+      
+      $fichier=fopen("utilisateurs.csv", "r");
       //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
       while (($ligne = fgetcsv($fichier)) !== false) {
 
-            //Verification pour presenter le sexe oppose
-            if($_SESSION["sexe"] != $ligne[4]){
-              //Afficher cet utilisateur pseudo + description
-              //Crer un "dictionnaire" ou on va mettre ces personnes pour les recuperer plus tard dans la page
-              global $user_print = (
-                "pseudo" => $ligne[2];
-                "description" => $ligne[9];
-              );
-          }
+            if(isset($ligne[4]) && isset($ligne[8])) {
+
+                //Verification pour presenter le sexe oppose
+                if($_SESSION["sexe"] != $ligne[4]){
+                    //Verification pour presenter le meme type de relation
+                    if($_SESSION["type_relation"] == $ligne[8]){
+                        //Afficher cet utilisateur pseudo + description
+
+                        ?>
+
+                        <div id="user_print">
+                            <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?></b></p>
+                            <p><?= $ligne[9] ?></p>
+                            <a href="Umessagerie.php">Envoyer un message</a>
+                        </div>
+
+
+
+                        <?php
+
+
+
+                    }
+                 
+                }
+            }
       }
-      */  
+        
       ?>
 
       <!--<p><b><?= $user_print['pseudo'] ?></b></p>-->
