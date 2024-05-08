@@ -22,23 +22,19 @@ h1{
 
 }
 
-#Accueil{
-  margin-right: 250px;
-}
-
-#Profil{
-  margin-right: 250px;
-}
-
-#Messagerie{
-  margin-right: 250px;
-}
-
-#Parametres{
-  margin-right: 250px;
+.bouton{
+  margin-right: auto;
+  margin-left:auto;
 }
 
 #main{
   text-align: center;
 }
 
+.image{
+  width: 250px;
+  height:250px;
+  object-fit: cover;
+  border: solid black 2px;
+  border-radius: 40px;
+}
