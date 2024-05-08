@@ -18,20 +18,31 @@ h1{
   border: black solid 2px;
   padding: 20px;
 
+.bouton{
+  margin-right: auto;
+  margin-left:auto;
 }
 
-#Accueil{
-  margin-right: 250px;
+
+#user_print{
+  display: inline-block;
+  background-color: white;
+  border: solid black 2px;
+  border-radius: 50px;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  margin-left: 31px;
+  width: 500px;
+
+
 }
 
-#Profil{
-  margin-right: 250px;
-}
-
-#Messagerie{
-  margin-right: 250px;
-}
-
-#Parametres{
-  margin-right: 250px;
+.image{
+  width: 80px;
+  height:80px;
+  object-fit: cover;
+  border: solid black 2px;
+  border-radius: 50%;
+  margin-right: 20px;
 }
