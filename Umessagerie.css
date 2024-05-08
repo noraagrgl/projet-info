@@ -11,7 +11,9 @@ h1{
   padding-top: 50px;
 }
 
-
+h2{
+  text-align: center;
+}
 
 #containerA{
   display: flex;
@@ -22,22 +24,95 @@ h1{
 
 }
 
-#Accueil{
-  margin-right: 250px;
-}
-
-#Profil{
-  margin-right: 250px;
-}
-
-#Messagerie{
-  margin-right: 250px;
-}
-
-#Parametres{
-  margin-right: 250px;
-}
-
 #main{
   text-align: center;
+}
+
+.bouton{
+  margin-right: auto;
+  margin-left:auto;
+}
+
+.user_print{
+  display: inline-block;
+  background-color: white;
+  border-bottom: solid black 1px;
+  width: 300px;
+  height: 90px;
+}
+.user_print:hover{
+  background-color: whitesmoke;
+}
+
+.user_print:active{
+  background-color: lightgray;
+}
+
+
+.image{
+  width: 50px;
+  height:50px;
+  object-fit: cover;
+  border: solid black 2px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+#containerMessagerie{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#contacts{
+  display: inline-block;
+  border-right: solid black 2px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: white;
+  height: 840px;
+  width: 320px;
+ 
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+
+#conversation{
+  background-color: white;
+  
+
+
+  height: 840px;
+  width: 1500px;
+}
+
+
+#text{
+  position:fixed;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  bottom:0;
+  width: 1500px;
+
+
+}
+#envoyer{
+  height: 50px;
+  width: 110px;
+  font-size: 14px;
+  color: white;
+  background-color: hotpink;
+  border: solid hotpink 2px;
+  border-radius: 10px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#envoyer:hover{
+  opacity: 0.9;
+}
+#envoyer:active{
+  opacity: 0.5;
 }
