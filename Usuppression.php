@@ -1,8 +1,14 @@
 <?php
+
+//___________________________________________________________________________
+//                        SUPPRESSION D'UNE LIGNE
+//___________________________________________________________________________
+
+//Creation d'un autre fichier temporaire pour recopier tout du fichier origial hormis la ligne qu'on souhaite supprimer 
+
 if(isset($_POST['messageId'])) {
 
-    //On recupere messageId sous forme de chaine de caractere
-    $messageId = strval($_POST['messageId']);
+    $messageId = $_POST['messageId'];
 
     $fichier = "conversation.txt";
     $fichierTemp = "conversation_temp.txt"; 
@@ -11,23 +17,23 @@ if(isset($_POST['messageId'])) {
     $handleTemp = fopen($fichierTemp, "w"); 
 
     if ($handle && $handleTemp) {
-        while (($ligne = fgets($handle)) !== false) {	        
+        while (($ligne = fgets($handle)) !== false) {           
             $elements = explode(";", $ligne);
 
-            $dateEnvoie = strval($elements[3]);
+            $dateEnvoie = new DateTime($elements[3]);//$element[3] correspond a la 4eme colonne du fichier conversation.txt (date_envoie)
 
-            //error_log("messageId = ".$messageId);
-            //error_log("dateEnvoie = ".$dateEnvoie);
+            $messageDate = new DateTime($messageId);
 
-            if (isset($elements[3]) && $messageId != $dateEnvoie) {
-                fwrite($handleTemp, $ligne); 
+            // Compare les dates d'envoi du message et messageId sous le meme format de date
+            if ($dateEnvoie->format('Y-m-d H:i:s') != $messageDate->format('Y-m-d H:i:s')) {
+                fwrite($handleTemp, $ligne);
             }
         }
         fclose($handle);
         fclose($handleTemp);
 
-        //unlink($fichier);
-        rename($fichierTemp, $fichier);
+        unlink($fichier);//Supression du fichier original
+        rename($fichierTemp, $fichier);//Renome le fichier temporaire en fichier original
 
         echo "La ligne contenant le message avec l'id $messageId a été supprimée.";
     } 
