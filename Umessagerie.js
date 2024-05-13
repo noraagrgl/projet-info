@@ -218,16 +218,16 @@ document.querySelectorAll('.user_print').forEach(item => {
                         //___________________________________________________________________________
                         //                          POUR AFFICHER SUPPRIMER
                         //___________________________________________________________________________
-                        var suppr = document.createElement("div");
-                        suppr.style.backgroundColor="whitesmoke" ;
-                        suppr.textContent = " Supprimer";
-                        suppr.style.fontSize = "12px";
-                        suppr.style.display="inline-block"; 
+                        //var suppr = document.createElement("div");
+                        var suppr = document.createElement("img");
+                        suppr.src = "image/poubelle.png"; // Remplacez par le chemin de votre image
+                        suppr.alt = "logo d'une poubelle";
+                        suppr.style.objectFit= "cover";
+                        suppr.style.witdh="30px";
+                        suppr.style.height="30px";
                         suppr.style.border="1px solid black";
-                        suppr.style.borderRadius="10px";
-                        suppr.style.color = "black"; 
-                        suppr.style.marginTop = "5px"; 
-                        suppr.style.padding = "5px";
+                        suppr.style.borderRadius="50%";
+            
 
 
                         suppr.style.cursor = "pointer"; // Ajouter un style de curseur pointer pour indiquer que c'est un élément cliquable
@@ -241,6 +241,8 @@ document.querySelectorAll('.user_print').forEach(item => {
                             supprimerMessage(dateEnvoie);
                             
                         });
+
+                        messageElement.appendChild(suppr);
 
                         messageClicked = true;
                     }
