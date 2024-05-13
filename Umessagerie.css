@@ -1,6 +1,6 @@
 body{
   background-image: url("image/fond2.jpg");
-  font-family: fantasy;
+  font-family: Arial;
   font-size: 20px;
 }
 
@@ -72,11 +72,23 @@ h2{
   background-color: white;
   height: 840px;
   width: 320px;
- 
+  overflow: auto;
   margin-right: 10px;
   margin-left: 10px;
 }
 
+#containerlogo{
+  display: inline-block;
+  text-align: center;
+  width: 670px;
+  height: 200px;
+  padding: 120px;
+}
+
+#logoMessagerie{
+  border-radius: 50%;
+
+}
 
 
 #conversation{
@@ -88,6 +100,28 @@ h2{
   width: 1500px;
 }
 
+#zone_message{
+  display: inline-block;
+  height: 630px;
+  width: 1100px;
+  background-color: lightcyan;
+  margin-left: 200px;
+  border: solid black 1px;
+  border-radius: 25px;
+  overflow: auto;
+  
+}
+
+#destinataireChoisi{
+  display: block;
+  height: 50px;
+  width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
 
 #text{
   position:fixed;
@@ -95,9 +129,9 @@ h2{
   margin-left: 20px;
   bottom:0;
   width: 1500px;
-
-
 }
+
+
 #envoyer{
   height: 50px;
   width: 110px;
@@ -111,8 +145,8 @@ h2{
 }
 
 #envoyer:hover{
-  opacity: 0.9;
+  opacity: 0.7;
 }
 #envoyer:active{
-  opacity: 0.5;
+  opacity: 0.4;
 }
