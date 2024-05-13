@@ -15,7 +15,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="Umessagerie.css">
-    <script src="Umessagerie.js"></script>
+    <!-- <sript src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></sript> -->
+    <!--<script type="text/javascript" src="Umessagerie.js"></script>-->
 </head>
 <body>
   <div id="containerA">
@@ -29,10 +30,11 @@
     <div id="containerMessagerie">
       <div id="contacts">
         <h2>CONTACTS</h2>
+        <div id="contactErreur"></div>
 
 
 
-        <?php
+      <?php
       
       $fichier=fopen("utilisateurs.csv", "r");
       //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
@@ -45,7 +47,7 @@
                         //Afficher cet utilisateur pseudo + description
                         ?>
                         <!--<div id="user_print" onclick="contact(this)">-->
-                        <div class="user_print" data-id="<?= $ligne[0] ?>">
+                        <div class="user_print active" data-id="<?= $ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
                             <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?></b></p>
                         </div>
                         <?php
@@ -53,6 +55,7 @@
                 }
             }
       }
+      
       ?>
 
 
@@ -63,14 +66,26 @@
         
       <div id="conversation">
         <h2>CONVERSATION</h2>
+        
+        <div id="zone_message">
+          <div id="destinataireChoisi">
+            <p>Bienvenue sur la messagerie de CY-Rencontres, et voici les contacts que vous pouvez sélectionner</p>
+            <div id="containerlogo"><img id="logoMessagerie" src="image/messagerie.png" alt="Logo de la messagerie"></div>
+          </div>
+
+          <div id="messagesContainer">
+            
+          </div>
+
+
+        </div>
+
 
 
         <div id="text">
-          <form method="post">
-            <textarea id="zone_text" name="message" rows="3" cols="185">
-            Écrivez votre message...
-            </textarea>
-            <button type="submit" id="envoyer"><b>Envoyer</b></button>
+          <form method="POST">
+            <textarea id="zone_text" name="message" rows="3" cols="155"></textarea>        
+            <button type="submit" id="envoyer" class="active"><b>Envoyer</b></button>
           </form>
         </div>
       </div>
@@ -78,19 +93,14 @@
 
 
 
-<script>
-        // Ajout d'un gestionnaire d'événements sur les divs de contacts
-        document.querySelectorAll('.user_print').forEach(item => {
-            item.addEventListener('click', function() {
-                // Récupérer l'identifiant de l'utilisateur
-                var userId = this.getAttribute('data-id');
-                console.log("Identifiant de l'utilisateur cliqué : " + userId);
-                // Vous pouvez maintenant utiliser userId comme vous le souhaitez
-                // Par exemple, l'envoyer à un script PHP via une requête AJAX
-                alert(userId);
-            });
-        });
-   </script>
+   <div>
+
+  </div>
+
+
+  
+  <sript src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></sript>
+  <script type="text/javascript" src="Umessagerie.js"></script>
 
 
 
