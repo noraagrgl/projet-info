@@ -1,6 +1,6 @@
 body{
   background-image: url("image/fond2.jpg");
-  font-family: fantasy;
+  font-family: Arial;
   font-size: 20px;
 }
 
@@ -18,6 +18,7 @@ h1{
   border: black solid 2px;
   padding: 20px;
 
+}
 .bouton{
   margin-right: auto;
   margin-left:auto;
@@ -34,7 +35,6 @@ h1{
   margin-right: 50px;
   margin-left: 31px;
   width: 500px;
-
 
 }
 
