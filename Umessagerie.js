@@ -25,6 +25,41 @@ function rafraichirMessages() {
 setInterval(rafraichirMessages, 3000); // Par exemple, toutes les 3 secondes
 */
 
+
+
+//___________________________________________________________________________
+//                        FONCTION DE SIGNALEMENT AJAX
+//___________________________________________________________________________
+
+function signalerMessage(emetteur, destinataire, messageContent, dateEnvoie, critereSignalement){
+
+
+
+var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+
+
+    var messageSignalement =  encodeURIComponent(emetteur) +";"+
+                 encodeURIComponent(destinataire) +";"+
+                 encodeURIComponent(messageContent) +";"+
+                 encodeURIComponent(dateEnvoie) +";"+
+                 encodeURIComponent(critereSignalement)+"\n";
+
+    xhttp.open("POST", "Usignalement.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("messageSignalement=" + messageSignalement);
+
+    console.log("Fonction JS END - messageSignalement = "+messageSignalement);
+
+}
+
+
+
+
 //___________________________________________________________________________
 //                        FONCTION DE SUPPRESSION AJAX
 //___________________________________________________________________________
@@ -175,7 +210,14 @@ document.querySelectorAll('.user_print').forEach(item => {
                 if((userId==emmeteur&&emailSession==destinataire)||(userId==destinataire&&emailSession==emmeteur)){
                     messageElement.textContent =/* emmeteur + " - " + destinataire + " - " + */messageContent + "   "/* + dateEnvoie*/;
                     messagesContainer.appendChild(messageElement);
+
+                    
+                    messageElement.style.display = "inline-block";                   
+                    messageElement.style.border = "1px solid black";
+                    messageElement.style.borderRadius = "20px";
                     messageElement.style.witdh = "800px";
+                    messageElement.style.marginTop = "10px";
+                    messageElement.style.padding = "15px";     
 
                     if(userId==emmeteur){
                         messageElement.style.float = "left";
@@ -194,16 +236,11 @@ document.querySelectorAll('.user_print').forEach(item => {
                     }
        
                 }
-                messageElement.style.display = "inline-block";
-                messageElement.style.padding = "15px";
-                messageElement.style.border = "1px solid black";
-                messageElement.style.borderRadius = "20px";
-                messageElement.style.transparency="0.6";
-                messageElement.style.marginTop = "10px";     
+                
 
                 messageElement.addEventListener("click", function() {
 
-                    if (!messageClicked) { // Vérifier si le message n'a pas encore été cliqué
+                    if (!messageClicked) { // Vérifie si le message n'a pas encore été cliqué
                         //___________________________________________________________________________
                         //                          POUR AFFICHER LA DATE
                         //___________________________________________________________________________
@@ -214,37 +251,131 @@ document.querySelectorAll('.user_print').forEach(item => {
                         dateElement.style.color = "gray"; 
                         dateElement.style.marginTop = "5px"; 
                         dateElement.style.padding = "5px";
-                        messageElement.appendChild(dateElement); // Ajout de la div
+                        messageElement.appendChild(dateElement); //Ajout de la div
+                        //___________________________________________________________________________
+                        //                          POUR AFFICHER SIGNALER
+                        //___________________________________________________________________________
+
+                        if(userId==emmeteur){
+                            //BOUTON
+                            var bouton = document.createElement("button");
+                            bouton.innerHTML = "Signaler ce message";
+                            messageElement.appendChild(bouton);
+
+
+                            //MODAL
+                            var modal = document.createElement("div");
+                            modal.classList.add("modal");
+
+                            var modalContent = document.createElement("div");
+                            modalContent.classList.add("modal-content");
+                            modal.appendChild(modalContent);
+
+                            var closeButton = document.createElement("span");
+                            closeButton.classList.add("close");
+                            closeButton.innerHTML = "&times;";
+                            modalContent.appendChild(closeButton);
+
+                            var modalText = document.createElement("p");
+                            modalText.innerHTML = "Vous signalez ce message: \""+messageContent+"\" pour ?";
+                            modalContent.appendChild(modalText);
+
+
+                            //OPTIONS
+                            var signalementOptions = ["Contenu inapproprié", "Spam", "Harcelement"];
+                            signalementOptions.forEach(function(option) {
+                              var optionDiv = document.createElement("div");
+                              optionDiv.innerHTML = option;
+                              modalContent.appendChild(optionDiv);          
+                              optionDiv.addEventListener("click", function() {                              
+                                modalContent.querySelectorAll(".modal-content div").forEach(function(div) {
+                                  div.style.color = "black";
+                                }); 
+                                optionDiv.style.color = "red";
+                                critereSignalement = option;
+                              });
+                            });
+
+
+                            //BOUTON ENVOIE
+                            var envoyerButton = document.createElement("button");
+                            envoyerButton.innerHTML = "Envoyer un signalement";
+                            modalContent.appendChild(envoyerButton);
+
+                            document.body.appendChild(modal);
+
+                            //BOUTON CLIQUE
+                            bouton.addEventListener("click", function() {
+                              modal.style.display = "block";
+                            });
+
+                            //FERME MODAL CLIQUE
+                            closeButton.addEventListener("click", function() {
+                              modal.style.display = "none";
+                            });
+
+                            //FERME MODAL CLIQUE EN DEHORS DIV
+                            window.addEventListener("click", function(event) {
+                              if (event.target == modal) {
+                                modal.style.display = "none";
+                              }
+                            });
+
+                            //Vide le critere
+                            var critereSignalement = "";
+
+                            //BOUTON ENVOIE CLIQUE
+                            envoyerButton.addEventListener("click", function() {
+                              
+                              //CRITERE SIGNALEMENT SELECTIONNE OU NON
+                              if (critereSignalement) {
+                                alert("Nous vous remercions de votre aide.\nVous avez signaler un message pour : " + critereSignalement);
+                                signalerMessage(emmeteur, destinataire, messageContent, dateEnvoie, critereSignalement);
+                                modal.style.display = "none";
+                              } else {
+                                alert("Veuillez sélectionner un critère de signalement.");
+                              }
+                            });
+
+
+                            messageClicked = true;
+
+
+                        
+
+                        }
+
                         //___________________________________________________________________________
                         //                          POUR AFFICHER SUPPRIMER
                         //___________________________________________________________________________
-                        //var suppr = document.createElement("div");
-                        var suppr = document.createElement("img");
-                        suppr.src = "image/poubelle.png"; // Remplacez par le chemin de votre image
-                        suppr.alt = "logo d'une poubelle";
-                        suppr.style.objectFit= "cover";
-                        suppr.style.witdh="30px";
-                        suppr.style.height="30px";
-                        suppr.style.border="1px solid black";
-                        suppr.style.borderRadius="50%";
-            
 
+                        else{
+                            var suppr = document.createElement("img");
+                            suppr.src = "image/poubelle.png"; 
+                            suppr.alt = "logo d'une poubelle";
+                            suppr.style.objectFit= "cover";
+                            suppr.style.witdh="25px";
+                            suppr.style.height="25px";
+                            suppr.style.borderRadius="50%";
+                            suppr.style.cursor = "pointer"; 
 
-                        suppr.style.cursor = "pointer"; // Ajouter un style de curseur pointer pour indiquer que c'est un élément cliquable
-                        messageElement.appendChild(suppr); // Ajout de la div
+                            messageElement.appendChild(suppr); //Ajout de la div
 
-                        // Ajouter un écouteur d'événements au bouton de suppression
-                        
-                        suppr.addEventListener("click", function(event) {
-                            event.stopPropagation(); // Empêcher la propagation de l'événement de clic vers le message parent
-                            console.log("dateEnvoie = "+dateEnvoie);
-                            supprimerMessage(dateEnvoie);
                             
-                        });
+                            //BOUTON 
+                            suppr.addEventListener("click", function(event) {
+                                event.stopPropagation(); //Empeche la propagation de l'événement de clic vers le message parent
+                                console.log("dateEnvoie = "+dateEnvoie);
+                                supprimerMessage(dateEnvoie);
+                                
+                            });
 
-                        messageElement.appendChild(suppr);
 
-                        messageClicked = true;
+                            messageClicked = true;
+
+                        }
+
+                        
                     }
                 });
 
