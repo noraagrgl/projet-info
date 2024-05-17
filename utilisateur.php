@@ -1,6 +1,6 @@
 <?php
     session_start();
-    
+
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: acceuil.html");
     exit;
@@ -21,10 +21,22 @@
 <body>
 
     <div id="containerA">
+      <div class="bouton">
+        <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php">Accueil</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/profil.png" alt="image profil" class="imageSelection"/>
         <span id="Profil" class="bouton"> <a href="Uprofil.php">Profil</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/messagerie.png" alt="image messagerie" class="imageSelection"/>
         <span id="Messagerie" class="bouton"> <a href="Umessagerie.php">Messagerie</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/parametre.png" alt="image parametre" class="imageSelection"/>
         <span id="Parametres" class="bouton"> <a href="Uparametre.php">Paramètres</a></span>
+      </div>
         <span id="Deconnexion" class="bouton"> <a href="deconnexion.php">Déconnexion</a></span>
     </div>
 
@@ -34,11 +46,11 @@
 
       <h1>Bienvenue <?= $_SESSION['pseudo'] ?> </h1>
       <br><br><br>
-    
-    
+
+
 
       <?php
-      
+
       $fichier=fopen("utilisateurs.csv", "r");
       //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
       while (($ligne = fgetcsv($fichier)) !== false) {
@@ -66,11 +78,11 @@
 
 
                     }
-                 
+
                 }
             }
       }
-        
+
       ?>
 
       <!--<p><b><?= $user_print['pseudo'] ?></b></p>-->
