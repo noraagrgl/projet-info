@@ -16,10 +16,13 @@ if (isset($_POST['recherchePseudo']) && strlen($_POST['recherchePseudo']) >= 3) 
     exit;
 }
 
-// Ouvrir le fichier CSV
+// Ouvrir le fichier txt
 $utilisateurs = array();
-if (($fichier = fopen("utilisateurs.csv", "r")) !== false) {
-    while (($ligne = fgetcsv($fichier)) !== false) {
+if (($fichier = fopen("utilisateurs.txt", "r")) !== false) {
+    while (($ligne = fgets($fichier)) !== false) {
+
+        $ligne = explode(";", trim($ligne));
+        
         if (stripos($ligne[2], $pseudoRecherche) === 0) {
             // Vérifiez que la session contient une photo de profil
             $photoProfil = isset($_SESSION['photo_profil']) && !empty($_SESSION['photo_profil']) ? 'image/'.$ligne[10] : 'image/default_photo.jpg';
