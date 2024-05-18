@@ -51,9 +51,12 @@
 
       <?php
 
-      $fichier=fopen("utilisateurs.csv", "r");
+      $fichier=fopen("utilisateurs.txt", "r");
+
       //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
-      while (($ligne = fgetcsv($fichier)) !== false) {
+      while (($ligne = fgets($fichier)) !== false) {
+
+            $ligne = explode(";", trim($ligne));
 
             if(isset($ligne[4]) && isset($ligne[8])) {
 
