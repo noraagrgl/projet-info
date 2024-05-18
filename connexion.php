@@ -5,13 +5,16 @@
 //var_dump($_POST);
 if(isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
     
-    $fichier=fopen("utilisateurs.csv", "r");
+    $fichier=fopen("utilisateurs.txt", "r");
     $tmp=0;
 
 
 
     //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
-    while (($ligne = fgetcsv($fichier)) !== false) {
+    while (($ligne = fgets($fichier)) !== false) {
+
+        $ligne = explode(";",trim($ligne));
+
         //Verification email
         if($_POST["email"] == $ligne[0]){
             //Verification mot de passe
