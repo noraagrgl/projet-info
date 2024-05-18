@@ -13,12 +13,12 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     $nouvelleProfession = isset($_POST['profession']) ? $_POST['profession'] : "";
     $nouveauLieuResidence = isset($_POST['lieu_residence']) ? $_POST['lieu_residence'] : "";
 
-    // Ouvrir le fichier CSV en mode lecture et écriture
-    $fichier = file("utilisateurs.csv");
+    // Ouvrir le fichier txt en mode lecture et écriture
+    $fichier = file("utilisateurs.txt");
     $nouveauFichier = "";
 
     foreach ($fichier as $ligne) {
-        $donnees = explode(",", $ligne);
+        $donnees = explode(";", trim($ligne));
         if ($donnees[0] == $_SESSION['email']) {
             // Remplacer l'ancienne ligne par la nouvelle ligne mise à jour
             $donnees[2] = ($nouveauPseudo !== "") ? $nouveauPseudo : $donnees[2];
@@ -31,7 +31,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
             $donnees[6] = ($nouvelleProfession !== "") ? $nouvelleProfession : $donnees[6];
             $donnees[7] = ($nouveauLieuResidence !== "") ? $nouveauLieuResidence : $donnees[7];
             // Reconstruire la ligne et ajouter au nouveau fichier
-            $nouveauFichier .= implode(",", $donnees);
+            $nouveauFichier .= implode(";", $donnees);
         } else {
             // Ajouter les autres lignes sans modification
             $nouveauFichier .= $ligne;
@@ -39,7 +39,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     }
 
     // Réécrire le fichier avec les données mises à jour
-    file_put_contents("utilisateurs.csv", $nouveauFichier);
+    file_put_contents("utilisateurs.txt", $nouveauFichier);
 
     // Mettre à jour la session avec les nouvelles informations
     $_SESSION['pseudo'] = $nouveauPseudo;
