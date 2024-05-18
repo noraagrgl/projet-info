@@ -36,24 +36,27 @@
 
       <?php
       
-      $fichier=fopen("utilisateurs.csv", "r");
+      $fichier=fopen("utilisateurs.txt", "r");
       //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
-      while (($ligne = fgetcsv($fichier)) !== false) {
-            if(isset($ligne[4]) && isset($ligne[8])) {
-               //Verification pour presenter le sexe oppose
-                if($_SESSION["sexe"] != $ligne[4]){
-                    //Verification pour presenter le meme type de relation
-                    if($_SESSION["type_relation"] == $ligne[8]){
-                        //Afficher cet utilisateur pseudo + description
-                        ?>
-                        <!--<div id="user_print" onclick="contact(this)">-->
-                        <div class="user_print active" data-id="<?= $ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
-                            <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?></b></p>
-                        </div>
-                        <?php
-                    }
-                }
-            }
+      while (($ligne = fgets($fichier)) !== false) {
+
+          $ligne = explode(";", trim($ligne));
+
+          if(isset($ligne[4]) && isset($ligne[8])) {
+             //Verification pour presenter le sexe oppose
+              if($_SESSION["sexe"] != $ligne[4]){
+                  //Verification pour presenter le meme type de relation
+                  if($_SESSION["type_relation"] == $ligne[8]){
+                      //Afficher cet utilisateur pseudo + description
+                      ?>
+                      <!--<div id="user_print" onclick="contact(this)">-->
+                      <div class="user_print active" data-id="<?= $ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
+                          <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?></b></p>
+                      </div>
+                      <?php
+                  }
+              }
+          }
       }
       
       ?>
