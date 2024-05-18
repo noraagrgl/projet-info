@@ -1,0 +1,64 @@
+body{
+  background-image: url("../image/fond2.jpg");
+  font-family: fantasy;
+  
+  
+  background-position: center;
+
+}
+
+h1{
+  text-align: center;
+  border-radius: 30%;
+  font-size: 62px;
+  padding-top: 50px;
+}
+
+.imageSelection{
+  width: 50px;
+  height:50px;
+  object-fit: cover;
+ 
+  margin-right: 20px;
+}
+
+#containerA{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border: black solid 2px;
+  padding: 20px;
+
+}
+.bouton{
+  margin-right: auto;
+  margin-left:auto;
+}
+
+.a{
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+#user_print{
+  display: inline-block;
+  background-color: white;
+  border: solid black 1px;
+  border-radius: 50px;
+  padding: 20px;
+  margin-bottom: 30px;
+  margin-right: 50px;
+  margin-left: 31px;
+  width: 500px;
+
+}
+
+.image{
+  width: 80px;
+  height:80px;
+  object-fit: cover;
+  border: solid black 2px;
+  border-radius: 50%;
+  margin-right: 20px;
+}

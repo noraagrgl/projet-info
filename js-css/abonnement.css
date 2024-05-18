@@ -1,0 +1,35 @@
+body{
+  background-image: url("../image/fond2.jpg");
+  font-family: fantasy;
+
+  background-position: center;
+
+}
+
+h1{
+  text-align: center;
+  border-radius: 30%;
+  font-size: 62px;
+  padding-top: 50px;
+}
+
+#container{
+  display: flex;
+  text-align: center;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+}
+#inscription{
+  margin-left: auto;
+  margin-right: 50px;
+  text-align: left;
+}
+#abonnement{
+  margin-left: 50px;
+  margin-right: auto;
+  text-align: left;
+}
+#boutonEnvoie{
+  font-size: 20px;
+}

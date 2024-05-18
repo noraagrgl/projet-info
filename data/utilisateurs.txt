@@ -1,0 +1,5 @@
+axel@gmail.com;5616818626;Axel;0;homme;2024-05-08;Plombier;Paris;unSoir;Youhouuu;Axel.jpg;gratuit;2024-05-18
+q@gmail.com;0456545657;Gabriel;0;homme;2024-05-08;qzd;qsd;serieux;qsdd;;gratuit;2024-05-18
+emma@gmail.com;06846513186;Emma;0;femme;2024-05-07;prof;paris;unSoir;youhouuu;Emma.jpg;gratuit;2024-05-18
+camille@gmail.com;063222587;Camille;0;femme;2024-05-07;prof Fac;paris;leger;youhouuuuu;Camille.jpg;gratuit;2024-05-18nidhal@gmail.com;0687549987;Nidhal;0;homme;2024-04-30;musicien;paris;leger;la musique youhouuuuu;Nidhal.jpg;gratuit;2024-05-18
+emma95@gmail.com;06184354683;Emma95;0;femme;2024-04-16;Artiste;New york;unSoir;youhouuuuu95;Emma95.jpg;gratuit;2024-05-18

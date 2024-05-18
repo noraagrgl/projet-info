@@ -1,0 +1,58 @@
+body{
+  background-image: url("../image/fond2.jpg");
+  font-family: fantasy;
+
+  background-position: center;
+
+}
+
+h1{
+  text-align: center;
+  border-radius: 30%;
+  font-size: 62px;
+  padding-top: 50px;
+}
+
+
+.imageSelection{
+  width: 50px;
+  height:50px;
+  object-fit: cover;
+ 
+  margin-right: 20px;
+}
+
+#containerA{
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  border: black solid 2px;
+  padding: 20px;
+
+}
+
+#Accueil{
+  margin-right: 250px;
+}
+
+#Profil{
+  margin-right: 250px;
+}
+
+#Messagerie{
+  margin-right: 250px;
+}
+
+#Parametres{
+  margin-right: 250px;
+}
+
+#main{
+  text-align: center;
+}
+
+.a{
+  color: black;
+  text-decoration: none;
+  font-size: 20px;
+}
