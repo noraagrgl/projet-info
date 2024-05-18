@@ -40,7 +40,7 @@
         <span id="Deconnexion" class="bouton"> <a href="deconnexion.php">Déconnexion</a></span>
     </div>
 
-
+    <a href="Urecherche.php">Recherche</a>
 
 
 
