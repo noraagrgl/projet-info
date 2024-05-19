@@ -14,7 +14,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     $nouveauLieuResidence = isset($_POST['lieu_residence']) ? $_POST['lieu_residence'] : "";
 
     // Ouvrir le fichier txt en mode lecture et écriture
-    $fichier = file("utilisateurs.txt");
+    $fichier = file("data/utilisateurs.txt");
     $nouveauFichier = "";
 
     foreach ($fichier as $ligne) {
@@ -39,7 +39,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     }
 
     // Réécrire le fichier avec les données mises à jour
-    file_put_contents("utilisateurs.txt", $nouveauFichier);
+    file_put_contents("data/utilisateurs.txt", $nouveauFichier);
 
     // Mettre à jour la session avec les nouvelles informations
     $_SESSION['pseudo'] = $nouveauPseudo;
