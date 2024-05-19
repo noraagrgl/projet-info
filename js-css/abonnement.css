@@ -1,35 +1,77 @@
 body{
-  background-image: url("../image/fond2.jpg");
-  font-family: fantasy;
-
-  background-position: center;
-
+	background-image: url("../image/fond2.jpg");
+	font-family: fantasy;
 }
+
+
 
 h1{
-  text-align: center;
-  border-radius: 30%;
-  font-size: 62px;
-  padding-top: 50px;
+	text-align: center;
+	
+	font-size: 100px;
 }
 
-#container{
-  display: flex;
-  text-align: center;
-  padding-top: 100px;
-  padding-bottom: 100px;
+h2{
+	text-align: center;
 
+	font-size: 60px;
+}
+
+
+p{
+	color: white;
+	font-size: 40px;
+	text-align: center;
+}
+
+
+#div1{
+
+	
+  display: block;
+  text-align: center;
+ 
+  border-radius: 5% ;
+  width: 1400px;
+  height: 600px;
+
+  padding-top: 20px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-left: auto;
+  margin-right: auto;
+
+  	
+
+}
+
+#containerA{
+	display: flex;
+	justify-content: center;
+	font-size: 40px;
 }
 #inscription{
-  margin-left: auto;
-  margin-right: 50px;
-  text-align: left;
+	margin-right: 50px;
+
+
 }
-#abonnement{
-  margin-left: 50px;
-  margin-right: auto;
-  text-align: left;
+#connexion{
+	margin-left: 50px;
 }
-#boutonEnvoie{
-  font-size: 20px;
+
+.bouton{
+	text-align: center;
+	width: 250px;
+	border: solid darkred 3px;
+	border-radius: 7%;
+	background-color: white;
+	padding: 20px;
+}
+
+.bouton:hover{
+	background-color: whitesmoke;
+}
+
+.bouton:active{
+	background-color: gray;
 }
