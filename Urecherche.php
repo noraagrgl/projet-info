@@ -4,8 +4,10 @@
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: acceuil.html");
     exit;
-}
+    }
 
+    $abonnement = $_SESSION['abonnement'];
+    error_log("______________________________________________Session abonnement = ".$abonnement);
 ?>
 
 
@@ -15,17 +17,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
-    <link rel="stylesheet" type="text/CSS" href="Urecherche.css">
+    <link rel="stylesheet" type="text/CSS" href="js-css/Urecherche.css">
     <!-- <script src="Urecherche.js"></script> -->
 </head>
 <body>
 
-    <div id="containerA">
-        <span id="Accueil" class="bouton"> <a href="utilisateur.php">Accueil</a></span>
-        <span id="Profil" class="bouton"> <a href="Uprofil.php">Profil</a></span>
-        <span id="Messagerie" class="bouton"> <a href="Umessagerie.php">Messagerie</a></span>
-        <span id="Parametres" class="bouton"> <a href="Uparametre.php">Paramètres</a></span>
-        <span id="Deconnexion" class="bouton"> <a href="deconnexion.php">Déconnexion</a></span>
+   <div id="containerA">
+      <div class="bouton">
+        <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
+        <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/profil.png" alt="image profil" class="imageSelection"/>
+        <span id="Profil" class="bouton"> <a href="Uprofil.php" class="a">Profil</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/messagerieIcone.png" alt="image messagerie" class="imageSelection"/>
+        <span id="Messagerie" class="bouton"> <a href="Umessagerie.php" class="a">Messagerie</a></span>
+      </div>
+      <div class="bouton">
+        <img src="image/parametre.png" alt="image parametre" class="imageSelection"/>
+        <span id="Parametres" class="bouton"> <a href="Uparametre.php" class="a">Paramètres</a></span>
+      </div>
+      <div class="bouton">
+         
+        <img src="image/deconnexion.png" alt="image deconnexion" class="imageSelection"/> 
+        <span id="Deconnexion" class="bouton"> <a href="deconnexion.php" class="a">Déconnexion</a></span>
+      </div>
+        
     </div>
 
 
@@ -84,8 +103,8 @@
                 
             </div>
 
-            <div id="containerPub1"class="pub">
-                <img id="pub1" src="image/pub1.png" alt="publicité1">
+            <div id="containerPub1">
+                <img id="pub1" src="image/pub1.png" alt="publicité1" class="pub">
             </div>
         </div>
 
@@ -117,11 +136,11 @@
 
             </div>
 
-            <div id="containerPub2" class="pub">
-                <img src="image/pub2.jpg" alt="publicité2netlix" class="pubSection2">
-                <img src="image/pub3.jpg" alt="publicité3coca" class="pubSection2">
-                <img src="image/pub4.jpg" alt="publicité4vinted" class="pubSection2">
-                <img src="image/pub5.jpg" alt="publicité4addidas" class="pubSection2">
+            <div id="containerPub2" >
+                <span class="pub"> <img src="image/pub2.jpg" alt="publicité2netlix" class="pubSection2" > </span>
+                <span class="pub" > <img src="image/pub3.jpg" alt="publicité3coca" class="pubSection2" > </span>
+                <span class="pub" > <img src="image/pub4.jpg" alt="publicité4vinted" class="pubSection2" > </span>
+                <span class="pub"> <img src="image/pub5.jpg" alt="publicité4addidas" class="pubSection2" > </span>
 
             </div>
 
@@ -179,9 +198,11 @@
     
     </div>
 
-   
+    <script>
+        var abonnement = "<?php echo $abonnement; ?>";
+    </script>
 
-    <script src="Urecherche.js"></script>
+    <script src="js-css/Urecherche.js"></script>
 
 </body>
 </html>
