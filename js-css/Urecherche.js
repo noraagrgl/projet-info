@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    //var abonnement = "<?php echo $abonnement; ?>";
+
+    //console.log("_____________abonnement = "+abonnement);
+
+    if (abonnement !== "gratuit") {
+        var pubs = document.querySelectorAll(".pub");
+        pubs.forEach(function(pub) {
+            pub.style.display = "none";
+        });
+    }
+
+
+
+
+
     document.getElementById("rechercheForm").addEventListener("submit", function(event) {
         event.preventDefault();
         
