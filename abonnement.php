@@ -19,7 +19,7 @@
 
         $data = "$email;$num;$pseudo;$mdp;$sexe;$naissance;$profession;$lieu_residence;$type_relation;$description;$photo_profil;$abonnement;$date_inscription\n";
 
-            $fichier = "utilisateurs.txt";
+            $fichier = "data/utilisateurs.txt";
 
             if (!file_exists($fichier)) {
                 echo ("Erreur : Le fichier txt n'existe pas.");
