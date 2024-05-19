@@ -13,7 +13,7 @@ if(isset($_POST['messageSignalement'])) {
 
     $messageSignalement = $_POST['messageSignalement'];
 
-    $fichier = "signalement.txt";
+    $fichier = "data/signalement.txt";
  
 
     $handle = fopen($fichier, "a");
