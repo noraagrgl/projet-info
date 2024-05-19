@@ -12,7 +12,7 @@ $emailSession = $_SESSION['email'];
 $messages = array();
 
 //Lecture du fichier texte ligne par ligne
-$messages = file("conversation.txt");
+$messages = file("data/conversation.txt");
 
 if(!empty($messages)) {
 
