@@ -10,8 +10,8 @@ if(isset($_POST['messageId'])) {
 
     $messageId = $_POST['messageId'];
 
-    $fichier = "conversation.txt";
-    $fichierTemp = "conversation_temp.txt"; 
+    $fichier = "data/conversation.txt";
+    $fichierTemp = "data/conversation_temp.txt"; 
 
     $handle = fopen($fichier, "r");
     $handleTemp = fopen($fichierTemp, "w"); 
@@ -44,4 +44,5 @@ if(isset($_POST['messageId'])) {
 else {
     echo "messageId n'a pas été correctement récupéré.";
 }
+
 ?>
