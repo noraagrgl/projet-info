@@ -17,7 +17,7 @@ session_start();
 
         $data = "$emmeteur;$destinataire;$message;$date_envoie\n";
 
-        $fichier = "conversation.txt";
+        $fichier = "data/conversation.txt";
 
         if (!file_exists($fichier)) {
             echo ("Erreur : Le fichier txt n'existe pas.");
