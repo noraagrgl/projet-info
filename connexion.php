@@ -5,7 +5,7 @@
 //var_dump($_POST);
 if(isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
     
-    $fichier=fopen("utilisateurs.txt", "r");
+    $fichier=fopen("data/utilisateurs.txt", "r");
     $tmp=0;
 
 
