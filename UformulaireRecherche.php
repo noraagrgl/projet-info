@@ -18,7 +18,7 @@ if (isset($_POST['recherchePseudo']) && strlen($_POST['recherchePseudo']) >= 3) 
 
 // Ouvrir le fichier txt
 $utilisateurs = array();
-if (($fichier = fopen("utilisateurs.txt", "r")) !== false) {
+if (($fichier = fopen("data/utilisateurs.txt", "r")) !== false) {
     while (($ligne = fgets($fichier)) !== false) {
 
         $ligne = explode(";", trim($ligne));
