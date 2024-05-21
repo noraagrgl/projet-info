@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp']) || isset($_POST['email']) || isset($_POST['num']) || isset($_POST['naissance']) || isset($_POST['type_relation']) || isset($_POST['profession']) || isset($_POST['lieu_residence'])) {
+if($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nouveauPseudo = isset($_POST['pseudo']) ? $_POST['pseudo'] : "";
     $nouvelleDescription = isset($_POST['description']) ? $_POST['description'] : "";
@@ -12,6 +12,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     $nouveauTypeRelation = isset($_POST['type_relation']) ? $_POST['type_relation'] : "";
     $nouvelleProfession = isset($_POST['profession']) ? $_POST['profession'] : "";
     $nouveauLieuResidence = isset($_POST['lieu_residence']) ? $_POST['lieu_residence'] : "";
+    $nouvellePhoto = isset($_POST['photo_profil']) ? $_POST['photo_profil'] : "";
 
     // Ouvrir le fichier txt en mode lecture et écriture
     $fichier = file("data/utilisateurs.txt");
@@ -30,6 +31,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
             $donnees[8] = ($nouveauTypeRelation !== "") ? $nouveauTypeRelation : $donnees[8];
             $donnees[6] = ($nouvelleProfession !== "") ? $nouvelleProfession : $donnees[6];
             $donnees[7] = ($nouveauLieuResidence !== "") ? $nouveauLieuResidence : $donnees[7];
+            $donnees[10] = ($nouvellePhoto !== "") ? $nouvellePhoto : $donnees[10];
             // Reconstruire la ligne et ajouter au nouveau fichier
             $nouveauFichier .= implode(";", $donnees);
         } else {
@@ -51,6 +53,7 @@ if(isset($_POST['pseudo']) || isset($_POST['description']) || isset($_POST['mdp'
     $_SESSION['type_relation'] = $nouveauTypeRelation;
     $_SESSION['profession'] = $nouvelleProfession;
     $_SESSION['lieu_residence'] = $nouveauLieuResidence;
+    $_SESSION['photo_profil'] = $nouvellePhoto;
 
     // Rediriger l'utilisateur vers la page de profil
     header("Location: Uprofil.php");
