@@ -7,7 +7,7 @@
     }
 
     $abonnement = $_SESSION['abonnement'];
-    error_log("______________________________________________Session abonnement = ".$abonnement);
+    
 ?>
 
 
@@ -22,25 +22,36 @@
 </head>
 <body>
 
-   <div id="containerA">
+  <div id="containerA">
+        
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
       </div>
+
+      <div class="bouton">
+        <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+      </div>
+
       <div class="bouton">
         <img src="image/profil.png" alt="image profil" class="imageSelection"/>
         <span id="Profil" class="bouton"> <a href="Uprofil.php" class="a">Profil</a></span>
       </div>
+
       <div class="bouton">
         <img src="image/messagerieIcone.png" alt="image messagerie" class="imageSelection"/>
         <span id="Messagerie" class="bouton"> <a href="Umessagerie.php" class="a">Messagerie</a></span>
       </div>
+
       <div class="bouton">
         <img src="image/parametre.png" alt="image parametre" class="imageSelection"/>
         <span id="Parametres" class="bouton"> <a href="Uparametre.php" class="a">Paramètres</a></span>
       </div>
-      <div class="bouton">
-         
+
+      <div class="bouton" id="adminDIV"></div>
+
+      <div class="bouton">       
         <img src="image/deconnexion.png" alt="image deconnexion" class="imageSelection"/> 
         <span id="Deconnexion" class="bouton"> <a href="deconnexion.php" class="a">Déconnexion</a></span>
       </div>
@@ -123,7 +134,6 @@
                       
                     </div>
                     <div id="loupeDiv">
-                           
                             <button type="submit" id="boutonSubmit">
                                 <img id="imageLoupe" src="image/loupe.jpg" alt="loupe">
                             </button>
@@ -148,48 +158,7 @@
                 <h1>Liste des profils recherchés:</h1>
                 <ul>
 
-                    <?php
-                       /* 
-
-                        if($_SESSION["liste_profil"]==1){
-                            $fichier=fopen("utilisateurs.csv", "r");
-                            //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
-                            while (($ligne = fgetcsv($fichier)) !== false) {
-
-                                if(isset($ligne[4]) && isset($ligne[8])) {
-
-                                    //Verification pour presenter le sexe oppose
-                                    if($_SESSION["sexe"] != $ligne[4]){
-                                        //Verification pour presenter le meme type de relation
-                                        if($_SESSION["type_relation"] == $ligne[8]){
-                                            //Afficher cet utilisateur pseudo + description
-                            
-                        }
-
-                        
-
-                        
-
-                                        ?>
-
-                                        <li>
-                                            <div id="user_print">
-                                                <p><img src="image/<?= $ligne[10] ?>" class="imageProfil"><b><?= $ligne[2] ?></b><a href="Umessagerie.php">     Consulter le profil</a></p>      
-                                            </div>
-                                        </li>
-
-
-                                        <?php
-
-
-
-                                    }
-                                 
-                                }
-                            }
-                      }
-                       */
-                    ?>
+                  
             </ul>
             </div>
 
@@ -199,7 +168,9 @@
     </div>
 
     <script>
+        
         var abonnement = "<?php echo $abonnement; ?>";
+        
     </script>
 
     <script src="js-css/Urecherche.js"></script>
