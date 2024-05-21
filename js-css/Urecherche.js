@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", function() {
         var formData = new FormData();
         formData.append('recherchePseudo', pseudo);
 
+
+        
+
         fetch('UformulaireRecherche.php', {
             method: 'POST',
             body: formData
@@ -36,8 +39,13 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(response => response.text()) // Utilisez text() pour déboguer la réponse brute
         .then(text => {
             console.log("Réponse brute:", text); // Affichez la réponse brute pour le débogage
+
             try {
+              
+
                 var data = JSON.parse(text); // Essayez d'analyser la réponse en JSON
+
+                
                 if (data.success) {
                     data.utilisateurs.forEach(utilisateur => {
                         var profil = document.createElement("div");
@@ -71,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         profil.appendChild(photoElement);
 
                         var linkElement = document.createElement("a");
-                        linkElement.href = utilisateur.profile_url; 
+                        linkElement.href = "UconsulterProfil.php?email=" + encodeURIComponent(utilisateur.email);
                         linkElement.textContent = "Consulter le profil";
                         linkElement.style.display = "inline-block";
                         linkElement.style.marginTop = "10px";
@@ -79,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         liste.appendChild(profil);
                     });
+
                 } else {
                     var messageElement = document.createElement("p");
                     messageElement.textContent = data.message;
