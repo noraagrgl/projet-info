@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("location: acceuil.html");
+    exit;
+}
+
 // Vérifie si l'utilisateur a cliqué sur le lien "Modifier"
 if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
     $_SESSION['edit_mode'] = true;
@@ -18,25 +23,36 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
     <link rel="stylesheet" type="text/CSS" href="js-css/Uprofil.css">
 </head>
 <body>
-   <div id="containerA">
+    <div id="containerA">
+        
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
       </div>
+
+      <div class="bouton">
+        <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+      </div>
+
       <div class="bouton">
         <img src="image/profil.png" alt="image profil" class="imageSelection"/>
         <span id="Profil" class="bouton"> <a href="Uprofil.php" class="a">Profil</a></span>
       </div>
+
       <div class="bouton">
         <img src="image/messagerieIcone.png" alt="image messagerie" class="imageSelection"/>
         <span id="Messagerie" class="bouton"> <a href="Umessagerie.php" class="a">Messagerie</a></span>
       </div>
+
       <div class="bouton">
         <img src="image/parametre.png" alt="image parametre" class="imageSelection"/>
         <span id="Parametres" class="bouton"> <a href="Uparametre.php" class="a">Paramètres</a></span>
       </div>
-      <div class="bouton">
-         
+
+      <div class="bouton" id="adminDIV"></div>
+
+      <div class="bouton">       
         <img src="image/deconnexion.png" alt="image deconnexion" class="imageSelection"/> 
         <span id="Deconnexion" class="bouton"> <a href="deconnexion.php" class="a">Déconnexion</a></span>
       </div>
@@ -48,6 +64,8 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
     <div id="main">
         <?php if($_SESSION['edit_mode']): ?>
             <form action="modifier_profil.php" method="POST">
+                <input type="file" id="photo_profil" name="photo_profil"><br>
+
                 <label for="pseudo">Pseudo:</label>
                 <input type="text" id="pseudo" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"><br>
 
@@ -78,6 +96,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
                 <input type="submit" value="Enregistrer">
             </form>
         <?php else: ?>
+            <img src="image/<?= $_SESSION['photo_profil'] ?>">
             <p><b>Pseudo:</b> <?= $_SESSION['pseudo'] ?> <a href="Uprofil.php?edit=true">(Modifier)</a></p>
             <p><b>Description:</b> <?= $_SESSION['description'] ?></p>
             <p><b>Mot de passe:</b> <?= $_SESSION['mdp'] ?></p>
