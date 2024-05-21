@@ -1,29 +1,3 @@
-/*
-// Fonction pour rafraîchir les messages en temps réel
-function rafraichirMessages() {
-    // Effectuer une requête AJAX pour récupérer les nouveaux messages
-    $.ajax({
-        type: 'POST',
-        url: 'Umessagerie.php', // URL du script PHP qui récupère les messages
-        dataType: 'json',
-        success: function(data) {
-            // Effacer les anciens messages
-            $('#messagesContainer').empty();
-
-            // Afficher les nouveaux messages
-            data.messages.forEach(function(message) {
-                $('#messagesContainer').append('<div>' + message + '</div>');
-            });
-        },
-        error: function(xhr, status, error) {
-            console.error('Erreur lors de la récupération des messages:', error);
-        }
-    });
-}
-
-// Appeler la fonction pour rafraîchir les messages toutes les X secondes
-setInterval(rafraichirMessages, 3000); // Par exemple, toutes les 3 secondes
-*/
 
 
 
@@ -61,7 +35,7 @@ var xhttp = new XMLHttpRequest();
 
 
 //___________________________________________________________________________
-//                        FONCTION DE SUPPRESSION AJAX
+//                    FONCTION DE SUPPRESSION MESSAGE AJAX
 //___________________________________________________________________________
 
 function supprimerMessage(messageId){
@@ -82,6 +56,61 @@ var xhttp = new XMLHttpRequest();
 }
 
 
+
+
+//___________________________________________________________________________
+//                    FONCTION BLOQUER UTILISATEUR AJAX
+//___________________________________________________________________________
+
+function bloquerUtilisateur(UserId){
+
+var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+        }
+    };
+
+
+
+    xhttp.open("POST", "UformulaireBlocage.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("UserId=" + UserId);
+
+}
+
+
+//Gere le click du bouton bloquer
+function handleClick() {
+    if (lastClickedUserId !== null) {
+        bloquerUtilisateur(lastClickedUserId);
+        alert("L'utilisateur à bien été bloqué.");
+    }
+}
+
+
+
+
+//___________________________________________________________________________
+//                    FONCTION estBLOQUER UTILISATEUR AJAX
+//___________________________________________________________________________
+function estBloque(UserId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log("Réponse reçue du serveur: " + this.responseText);
+            var response = JSON.parse(this.responseText);
+            console.log(response);
+            // Utilisez la réponse pour mettre à jour l'interface utilisateur ou pour toute autre logique
+        }
+    };
+
+    console.log("FONCTION ESTBLOQUE ACTIVE et userid = " + UserId);
+
+    xhttp.open("POST", "UestBloque.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("UserId=" + encodeURIComponent(UserId));
+}
 
 
 
@@ -147,11 +176,19 @@ function sendMessage(UserId) {
 
 
 
+
+
+
+
+
+
+
 //___________________________________________________________________________
 //                            SELECTION CONTACT
 //___________________________________________________________________________
 
 var lastClickedUserId = null;
+var nePasEnvoyer = 0;
 
 document.querySelectorAll('.user_print').forEach(item => {
     item.addEventListener('click', function() {
@@ -159,6 +196,7 @@ document.querySelectorAll('.user_print').forEach(item => {
 
         lastClickedUserId = userId;
 
+        estBloque(lastClickedUserId);
         
         var h2 = document.getElementById("destinataireChoisi");
         h2.innerHTML = "<h2 style='font-size: 20px;'>" + userId + "</h2>";
@@ -375,11 +413,35 @@ document.querySelectorAll('.user_print').forEach(item => {
 
                         }
 
+
+                    
+
+
+
                         
                     }
                 });
 
 
+
+
+
+
+                //___________________________________________________________________________
+                //                        BOUTON BLOQUÉ UTILISATEUR
+                //___________________________________________________________________________
+
+                var boutonBloquer = document.getElementById("boutonBloquer");
+
+                document.querySelectorAll(".boutonBloquer button").forEach(button => {
+                    // Supprimer tous les écouteurs d'événements existants sur le bouton
+                    button.removeEventListener("click", handleClick);
+
+                    // Ajouter un nouvel écouteur d'événements
+                    button.addEventListener("click", handleClick);
+                });
+
+               
                
             });
         })
@@ -390,22 +452,65 @@ document.querySelectorAll('.user_print').forEach(item => {
 
 
 
+        fetch('UestBloque.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ UserId: lastClickedUserId }) // Envoyer les données nécessaires à la deuxième requête
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de la deuxième requête');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Traitement des données de la deuxième réponse
+            console.log('Réponse de la deuxième requête :', data);
+            // Maintenant vous pouvez vérifier si l'utilisateur est bloqué ou non
+
+            if (data.bloqueSuccess === true) {
+                nePasEnvoyer = 1;
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors de la deuxième requête :', error);
+        });
+        
+       
+
+
+
+
 
         //___________________________________________________________________________
         //                          BOUTON ENVOYER
         //___________________________________________________________________________
         var envoyerBtn = document.getElementById("envoyer");
         envoyerBtn.addEventListener("click", function(event) {
-        event.preventDefault();
+            event.preventDefault();
 
-         if (lastClickedUserId !== null) {
+        console.log("nePasEnvoyer = "+nePasEnvoyer);
+            
+        if(nePasEnvoyer==0){
+
+            if(lastClickedUserId !== null) {
                 sendMessage(lastClickedUserId);
             }
+        }
+        else{
+            alert("L'utilisateur vous a bloqué, vous ne pouvez pas envoyer de message.");
+        }
+       
+
+            
         });
 
 
     });;
 });
+
 
 
 
