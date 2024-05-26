@@ -19,8 +19,7 @@ if(isset($_POST['email'])) {
     if ($handle && $handleTemp) {
         while (($ligne = fgets($handle)) !== false) {           
             $elements = explode(";", $ligne);
-            
-            error_log($email.$ligne[0]);
+
             if ($email != $elements[0]) {
                 fwrite($handleTemp, $ligne);
             }
