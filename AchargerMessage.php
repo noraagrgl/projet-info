@@ -3,8 +3,6 @@
 
     $email = $_SESSION["AdminConvEmail"];
 
-    error_log("email = ".$email);
-
     // Initialise un tableau vide
     $messages = array();
 
