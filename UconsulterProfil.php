@@ -1,18 +1,18 @@
 <?php
 
     session_start();
-
+    // Vérifie si l'utilisateur est connecté
     if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         header("location: acceuil.html");
         exit;
     }
 
 
-
+    // Vérifie si l'adresse e-mail de l'utilisateur à consulter est définie
     if (isset($_GET['email'])) {
         $email = $_GET['email'];
         $userFound = false;
-
+        // Ouvre le fichier des utilisateurs pour récupérer les informations de l'utilisateur à consulter
         $fichier = fopen("data/utilisateurs.txt", "r");
         while (($ligne = fgets($fichier)) !== false) {
             $ligne = explode(";", trim($ligne));
@@ -39,11 +39,7 @@
     }
 
 
-
-
-
-
- 
+    // Enregistre l'adresse e-mail consultée et l'adresse e-mail de la session actuelle dans un fichier
     $emailPage = $email;
     $emailSession = $_SESSION['email'];
     $fichier = "data/consulterProfil.txt";
@@ -65,7 +61,7 @@
         //echo json_encode(["message" => "Impossible d'ouvrir le fichier."]);
         exit;
     }
-
+    // Si la ligne n'existe pas déjà, l'ajoute au fichier
     if (!$ligneExistante) {
         // Ajouter la ligne au fichier
         $handle = fopen($fichier, "a");
@@ -79,29 +75,6 @@
     } else {
         //echo json_encode(["message" => "L'utilisateur avec l'email $emailPage est déjà enregistré."]);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -121,7 +94,7 @@
 </head>
 <body>
     <div id="containerA">
-        
+    <!-- Bouton de navigation -->
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
@@ -156,7 +129,7 @@
         
     </div>
 
-
+    <!-- Contenu du profil -->
     <div id="Lprofil">
         <h1>Profil de <?= htmlspecialchars($pseudo) ?></h1>
         <img src="image/<?= htmlspecialchars($photo) ?>" alt="Photo de profil" class="image">
