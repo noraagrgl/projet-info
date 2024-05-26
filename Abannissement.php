@@ -8,7 +8,7 @@ if (isset($_POST['email'])) {
     $email = trim($_POST['email']);
     $fichier = "data/bannissement.txt";
 
-    // Lire le fichier pour vérifier si l'email existe déjà
+    // Lire le fichier pour vérifier si l'email existe déjà pour ne pas le rajouter s'il existe
     $handle = fopen($fichier, "r");
     $emailExistant = false;
 
@@ -26,7 +26,7 @@ if (isset($_POST['email'])) {
     }
 
     if (!$emailExistant) {
-        // Ajouter l'email au fichier
+        // Ajoute l'email au fichier
         $handle = fopen($fichier, "a");
         if ($handle) {
             fwrite($handle, $email . "\n");
