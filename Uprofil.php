@@ -25,7 +25,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
 </head>
 <body>
     <div id="containerA">
-        
+    <!-- Boutons de navigation -->
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
@@ -64,9 +64,10 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
 
     <div id="main">
         <?php if($_SESSION['edit_mode']): ?>
+            <!-- Champ pour télécharger une nouvelle photo de profil -->
             <form action="modifier_profil.php" method="POST">
                 <input type="file" id="photo_profil" name="photo_profil"><br>
-
+            <!-- Champ pour télécharger une nouvelle photo de profil -->
                 <label for="pseudo">Pseudo:</label>
                 <input type="text" id="pseudo" name="pseudo" value="<?= $_SESSION['pseudo'] ?>"><br>
 
@@ -97,6 +98,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
                 <input type="submit" value="Enregistrer">
             </form>
         <?php else: ?>
+            <!-- Affichage des informations du profil -->
             <img class="image" src="image/<?= $_SESSION['photo_profil'] ?>">
             <p><b>Pseudo:</b> <?= $_SESSION['pseudo'] ?> <a href="Uprofil.php?edit=true">(Modifier)</a></p>
             <p><b>Description:</b> <?= $_SESSION['description'] ?></p>
