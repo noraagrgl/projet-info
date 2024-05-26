@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         linkElement.style.display = "inline-block";
         linkElement.style.marginTop = "10px";
         linkElement.id = "idGestionAdmin";
+        linkElement.classList.add("a");
         adminDIV.appendChild(linkElement);
     }
 });
