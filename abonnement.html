@@ -5,69 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="js-css/abonnement.css">
-    <script src="js-css/abonnement.js"></script>
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
-      <h1>Inscription et abonnement</h1>
-  <div id="container">
+    <h1>Inscription et abonnement</h1>
+
+    <div id="pageContainer">
+
+        <div id="container">
+            
+            <form action="abonnement.php" method="post">
+
+                <div id="inscription">
 
 
+                    <label for="email">Email :</label>
+                    <input type="email" id="email" name="email" required><br>
+                    <label for="num">Numéro de téléphone :</label>
+                    <input type="num" id="num" name="num" required><br>
 
-    <div id="inscription">
+                    <label for="pseudo">Pseudo:</label>
+                    <input type="text" id="pseudo" name="pseudo" required><br>
+                    <label for="mdp">Mot de passe:</label>
+                    <input type="password" id="mdp" name="mdp" required><br>
+                    <label for="sexe">Sexe:</label>
+                    <select name="sexe" id="sexe">
+                        <option value="homme">Homme</option>
+                        <option value="femme">Femme</option>
+                    </select><br>
 
-      <form action="abonnement.php" method="post">
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required><br>
+                    <label for="naissance">Date de naissance:</label>
+                    <input type="date" id="naissance" name="naissance"><br>
+                    <label for="profession">Profession:</label>
+                    <input type="text" id="profession" name="profession" required><br>
+                    <label for="lieu_residence">Ville de résidence:</label>
+                    <input type="text" id="lieu_residence" name="lieu_residence" required><br>
+                    <label for="type_relation">Type de relation recherché:</label>
+                    <select name="type_relation" id="type_relation">
+                        <option value="serieux">Relation sérieuse</option>
+                        <option value="leger">Relation légère</option>
+                        <option value="unSoir">Relation d'un soir</option>
+                    </select><br>
+                    <label for="description">Description:</label>
+                    <input type="text" id="description" name="description"><br>
+                    <label for="photo_profil">Photo de profil:</label>
+                    <input type="file" id="photo_profil" name="photo_profil" accept="image/*" required><br>
+                </div>
+                   
+                <div id="abonnement">
+                    <h3>Choisissez votre abonnement :</h3>
+                    <input type="radio" name="abonnement" value="gratuit" checked> Gratuit<br>
+                    <input type="radio" name="abonnement" value="mensuel"> Abonnement mensuel (9€/mois)<br>
+                    <input type="radio" name="abonnement" value="trimestriel"> Abonnement trimestriel (50€/six mois)<br>
+                    <input type="radio" name="abonnement" value="annuel"> Abonnement annuel (80€/an)<br>
 
-        <label for="num">Numéro de téléphone :</label>
-        <input type="num" id="num" name="num" required><br>
+                    <div id="paymentFields" style="display: none;">
+                        <label for="cardNumber">Numéro de carte :</label>
+                        <input type="text" id="cardNumber" name="cardNumber" maxlength="16"><br>
+                        <label for="expiryDate">Date d'expiration (MM/AA) :</label>
+                        <input type="text" id="expiryDate" name="expiryDate"><br>
+                        <label for="cvc">CVC :</label>
+                        <input type="text" id="cvc" name="cvc" maxlength="3"><br>
+                    </div>
+                     <br><br><br><br><br>
+               
+                    <button id="boutonEnvoie" type="submit">S'inscrire et s'abonner</button>
+                </div>
 
-        Pseudo: <input type="text" name="pseudo"><br>
-        Mot de passe: <input type="password" name="mdp"><br>
-        Sexe:
+            </form>
 
-        <select name="sexe">
-            <option value="homme">Homme</option>
-            <option value="femme">Femme</option>
-        </select><br>
+        </div>
 
-        Date de naissance: <input type="date" name="naissance"><br>
-       
-        <!--<label for="nbEnfants">Nombre d'enfants :</label>
-        <input type="number" id="nbEnfants" min="0" max="10" required onchange="generateChildAgeFields()"><br>
-
-        <div id="enfantsInputs">
-        </div>-->
-
-        Profession: <input type="text" name="profession"><br>
-        Ville de résidence: <input type="text" name="lieu_residence"><br>
-        Type de relation recherché:
-        <select name="type_relation">
-            <option value="serieux">Relation sérieuse</option>
-            <option value="leger">Relation légère</option>
-            <option value="unSoir">Relation d'un soir</option>
-        </select><br>
-        
-        Description: <input type="text" name="description"><br>
-        Photo de profil: <input type="file" name="photo_profil"><br>
-
-      
-
+        <div id="avantages">
+            <h2>Obtenez les avantages avec les abonnements !!!</h2>
+            <h3>Profitez d'un voyage sans pub et d'un accès à la messagerie !!!</h3>
+            <img id="imageMoney" src="image/money.png" alt="Image pour montrer les avantages des abonnements">
+        </div>
     </div>
 
-    <div id="abonnement">
-
-        <h3>Choisissez votre abonnement :</h3>
-        <input type="radio" name="abonnement" value="gratuit" checked> Gratuit<br>
-        <input type="radio" name="abonnement" value="mensuel"> Abonnement mensuel (9€/mois)<br>
-        <input type="radio" name="abonnement" value="trimestriel"> Abonnement trimestriel (50€/six mois)<br>
-        <input type="radio" name="abonnement" value="annuel"> Abonnement annuel (80€/an)<br>
-
-        <br><br><br><br><br>
-        <input id="boutonEnvoie" type="submit" value="S'inscrire et s'abonner">
-      </form>
-
-      <script src="js-css/abonnement.js"></script>
-    </div>
+    <script src="js-css/abonnement.js"></script>
 </body>
 </html>
