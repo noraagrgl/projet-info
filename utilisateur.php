@@ -1,14 +1,44 @@
 <?php
     session_start();
-// Vérifie si l'utilisateur est connecté
+
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: acceuil.html");
     exit;
     }
-// Récupère le type d'abonnement de l'utilisateur depuis la session
+
+
+    $banListFile = 'data/bannissement.txt';
+    
+    if (file_exists($banListFile)) {
+        $fileHandle = fopen($banListFile, 'r');
+        $isBanned = false;
+
+        while (($line = fgets($fileHandle)) !== false) {
+            $bannedEmail = trim($line);
+            
+            if ($bannedEmail === $_SESSION['email']) {
+                $isBanned = true;
+                break;
+            }
+        }
+        
+        fclose($fileHandle);
+
+        if ($isBanned) {
+            header('Location: acceuil.html');
+            exit();
+        }
+    } else {
+        echo "Le fichier de bannissement n'existe pas.";
+    }
+
+
     $abonnement = $_SESSION['abonnement'];
 
 ?>
+
+
+
 
 
 <!DOCTYPE html>
@@ -24,7 +54,7 @@
 <body>
 
     <div id="containerA">
-    <!-- Liste des différents boutons pour changer de page -->
+        
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
@@ -62,7 +92,7 @@
     
 
     <div id="gestionDiv"></div>
-<!-- Message de bienvenue avec le pseudo de l'utilisateur -->
+
       <h1>Bienvenue <?= $_SESSION['pseudo'] ?> </h1>
       <br><br><br>
 
@@ -167,7 +197,6 @@
  
 
     <script>
-        // Variable JavaScript pour stocker le type d'abonnement
         var abonnement = "<?php echo $abonnement; ?>";
     </script>
     <script src="js-css/utilisateur.js"></script>
