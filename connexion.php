@@ -1,28 +1,23 @@
 <?php
 
-
 // Vérifie si les données POST sont définies
-//var_dump($_POST);
-if(isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
-    
-    $fichier=fopen("data/utilisateurs.txt", "r");
-    $tmp=0;
+if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
 
+    $fichier = fopen("data/utilisateurs.txt", "r");
+    $utilisateurTrouve = false;
 
-
-    //lecture du fichier ligne par ligne et s'arrete a la fin quand fgetcsv renvoie faux
+    // Lecture du fichier ligne par ligne
     while (($ligne = fgets($fichier)) !== false) {
+        $ligne = explode(";", trim($ligne));
 
-        $ligne = explode(";",trim($ligne));
-
-        //Verification email
-        if($_POST["email"] == $ligne[0]){
-            //Verification mot de passe
-            if($_POST["mot_de_passe"] == $ligne[3]){
-                //Ouverture de la session
+        // Vérification de l'email
+        if ($_POST["email"] == $ligne[0]) {
+            // Vérification du mot de passe (utilisez password_verify si les mots de passe sont hachés)
+            if ($_POST["mot_de_passe"] == $ligne[3]) {
+                // Ouverture de la session
                 session_start();
 
-                //Stocke les données de l'utilisateur dans la session
+                // Stocke les données de l'utilisateur dans la session
                 $_SESSION['email'] = $ligne[0];
                 $_SESSION['num'] = $ligne[1];
                 $_SESSION['pseudo'] = $ligne[2];
@@ -36,30 +31,32 @@ if(isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
                 $_SESSION['photo_profil'] = $ligne[10];
                 $_SESSION['abonnement'] = $ligne[11];
                 $_SESSION['date_inscription'] = $ligne[12];
+
+                if (isset($ligne[13])) {
+                    $_SESSION['date_abonnement'] = $ligne[13];
+                }
+
                 $_SESSION['loggedin'] = true;
 
-                //Les identifiants sont corrects
-                $tmp ++;
+                // Les identifiants sont corrects
+                $utilisateurTrouve = true;
                 break;
+            } else {
+                // Le mot de passe est incorrect
+                echo json_encode(array('success' => false, 'message' => 'Mot de passe incorrect'));
+                exit;
             }
-
-            else {
-            // Le mot de passe est incorrect
-            echo json_encode(array('success' => false, 'message' => 'Mot de passe incorrect'));
-            exit;
-        }   
         }
-        
     }
-    //Si l'email n'a pas ete trouve dans le fichier
-    if($tmp == 0){
+
+    fclose($fichier);
+
+    // Si l'email n'a pas été trouvé dans le fichier
+    if (!$utilisateurTrouve) {
         echo json_encode(array('success' => false, 'message' => 'Adresse email incorrecte'));
         exit;
     }
-    fclose($fichier);
-}
-
-else {
+} else {
     // Si les données POST ne sont pas définies
     echo json_encode(array('success' => false, 'message' => 'Erreur lors de la soumission du formulaire'));
     exit;
@@ -67,9 +64,5 @@ else {
 
 // Si tout s'est bien passé, les identifiants sont corrects
 echo json_encode(array('success' => true));
-
-
-
-
 
 ?>
