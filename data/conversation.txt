@@ -1,0 +1,5 @@
+nicolas@gmail.com;clarisse@gmail.com;Coucou Clarisse, comment tu vas ?;2024-05-26 12:22:55
+clarisse@gmail.com;nicolas@gmail.com;Salut nicolas ! Tu fais quoi ?;2024-05-26 12:24:42
+axel@gmail.com;audrey@gmail.com;Connasse;2024-05-26 12:25:07
+nicolas@gmail.com;clarisse@gmail.com;Je fais à manger, ce soir c'est pizza !;2024-05-26 12:43:32
+camille@gmail.com;david@gmail.com;Hey salut david !;2024-05-26 16:38:13
