@@ -38,6 +38,73 @@
 
     }
 
+
+
+
+
+
+ 
+    $emailPage = $email;
+    $emailSession = $_SESSION['email'];
+    $fichier = "data/consulterProfil.txt";
+
+    // Lire le fichier pour vérifier si la ligne existe déjà
+    $handle = fopen($fichier, "r");
+    $ligneExistante = false;
+    $ligneRecherchee = $emailPage . ";" . $emailSession;
+
+    if ($handle) {
+    while (($ligne = fgets($handle)) !== false) {
+        if (trim($ligne) === $ligneRecherchee) {
+            $ligneExistante = true;
+            break;
+        }
+    }
+    fclose($handle);
+    } else {
+        //echo json_encode(["message" => "Impossible d'ouvrir le fichier."]);
+        exit;
+    }
+
+    if (!$ligneExistante) {
+        // Ajouter la ligne au fichier
+        $handle = fopen($fichier, "a");
+        if ($handle) {
+            fwrite($handle, $ligneRecherchee . "\n");
+            fclose($handle);
+            //echo json_encode(["message" => "L'utilisateur avec l'email $emailPage a bien été enregistré."]);
+        } else {
+            //echo json_encode(["message" => "Impossible d'ouvrir le fichier."]);
+        }
+    } else {
+        //echo json_encode(["message" => "L'utilisateur avec l'email $emailPage est déjà enregistré."]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 
 
@@ -48,7 +115,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
-    <link rel="stylesheet" type="text/css" href="js-css/Autilisateur.css">
+    <link rel="stylesheet" type="text/css" href="js-css/UconsulterProfil.css">
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
     
 </head>
 <body>
@@ -61,7 +129,7 @@
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -89,21 +157,18 @@
     </div>
 
 
-
-    <h1>Profil de <?= htmlspecialchars($pseudo) ?></h1>
-    <img src="image/<?= htmlspecialchars($photo) ?>" alt="Photo de profil" class="image">
-    <p><b>Email:</b> <?= htmlspecialchars($email) ?></p>
-    <p><b>Numéro de téléphone:</b> <?= htmlspecialchars($num) ?></p>
-    <p><b>Pseudo:</b> <?= htmlspecialchars($pseudo) ?></p>
-    <p><b>Mot de passe:</b> <?= htmlspecialchars($mdp) ?></p>
-    <p><b>Sexe:</b> <?= htmlspecialchars($sexe) ?></p>
-    <p><b>Âge:</b> <?= htmlspecialchars($naissance) ?></p>
-    <p><b>Profession:</b> <?= htmlspecialchars($profession) ?></p>
-    <p><b>Lieu de résidence:</b> <?= htmlspecialchars($lieu_residence) ?></p>
-    <p><b>Type de relation recherché:</b> <?= htmlspecialchars($type_relation) ?></p>
-    <p><b>Description:</b> <?= htmlspecialchars($description) ?></p>
-    <p><b>Abonnement:</b> <?= htmlspecialchars($abonnement) ?></p>
-    <p><b>Date d'inscription:</b> <?= htmlspecialchars($date_inscription) ?></p>
+    <div id="Lprofil">
+        <h1>Profil de <?= htmlspecialchars($pseudo) ?></h1>
+        <img src="image/<?= htmlspecialchars($photo) ?>" alt="Photo de profil" class="image">
+        <p><b>Pseudo:</b> <?= htmlspecialchars($pseudo) ?></p>
+        <p><b>Âge:</b> <?= htmlspecialchars($naissance) ?></p>
+        <p><b>Profession:</b> <?= htmlspecialchars($profession) ?></p>
+        <p><b>Lieu de résidence:</b> <?= htmlspecialchars($lieu_residence) ?></p>
+        <p><b>Type de relation recherché:</b> <?= htmlspecialchars($type_relation) ?></p>
+        <p><b>Description:</b> <?= htmlspecialchars($description) ?></p>
+        <p><b>Abonnement:</b> <?= htmlspecialchars($abonnement) ?></p>
+        <p><b>Date d'inscription:</b> <?= htmlspecialchars($date_inscription) ?></p>
+    </div>
 
 </body>
 </html>
