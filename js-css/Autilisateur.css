@@ -1,6 +1,6 @@
 body{
   background-image: url("../image/fond2.jpg");
-  font-family: fantasy;
+  font-family: arial;
   
 
 }
@@ -8,7 +8,7 @@ body{
 h1{
   text-align: center;
   border-radius: 30%;
-  font-size: 62px;
+  font-size: 45px;
   padding-top: 50px;
 }
 
@@ -24,6 +24,14 @@ h2{
   object-fit: cover;
  
   margin-right: 20px;
+}
+
+.Pimage{
+  object-fit: cover;
+  width: 150px;
+  height: 150px;
+  border: solid black 1px;
+  border-radius: 15px;
 }
 
 #containerA{
@@ -45,3 +53,147 @@ h2{
   font-size: 20px;
 }
 
+
+#containerB{
+  display: flex;
+}
+
+#Lprofil{
+  display: inline-block;
+  width: 500px;
+  height: 700px;
+  background-color: white;
+  border:2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  margin:30px;
+
+}
+
+#containerBouton{
+  display: flex;
+}
+
+.boutonUtilisateur{
+  margin:15px;
+}
+
+.image{
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+}
+
+#Amessagerie{
+ 
+}
+
+.conversation {
+  display: inline-block;
+  width: 500px;
+  height: 800px;
+
+  border:2px solid black;
+  border-radius: 20px;
+  padding: 20px;
+  margin:30px;
+}
+.message {
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+
+
+
+
+
+.user_print{
+  display: inline-block;
+
+  border-bottom: solid black 1px;
+  width: 200px;
+  height: 90px;
+}
+
+.user_print:hover{
+  background-color: #fdf1f1;
+}
+
+.user_print:active{
+  background-color: lightgray;
+}
+
+
+.image{
+  width: 50px;
+  height:50px;
+  object-fit: cover;
+  border: solid black 2px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+#containerMessagerie{
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#contacts{
+  display: inline-block;
+  border-right: solid black 2px;
+  padding-left: 30px;
+  padding-right: 30px;
+
+  height: 700px;
+  width: 200px;
+  overflow: auto;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#containerlogo{
+  display: inline-block;
+  text-align: center;
+  width: 400px;
+  height: 100px;
+  padding: 100px;
+}
+
+#logoMessagerie{
+  border-radius: 50%;
+}
+
+
+#conversation{
+  height: 540px;
+  width: 800px;
+}
+
+#zone_message{
+  display: inline-block;
+  height: 550px;
+  width: 700px;
+  background-color: lightcyan;
+  margin-left: 50px;
+  border: solid black 1px;
+  border-radius: 25px;
+  overflow: auto; 
+}
+
+#destinataireChoisi{
+  display: block;
+  height: 50px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#boxMessagerie{
+  border: 2px solid black;
+  border-radius: 30px;
+  margin:30px;
+  background-color: white;
+}
