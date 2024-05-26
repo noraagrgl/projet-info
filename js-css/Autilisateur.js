@@ -19,30 +19,6 @@ var xhttp = new XMLHttpRequest();
 
 }
 
-/*
-//___________________________________________________________________________
-//               ENVOIE EMAIL ACHARGERMESSAGE.PHP MESSAGE AJAX
-//___________________________________________________________________________
-
-function envoieChargeMessage(emailUtilisateur){
-
-var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
-        }
-    };
-
-    
-
-    xhttp.open("POST", "AchargerMessage.php", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("email=" + emailUtilisateur);
-
-}
-
-*/
-
 
 //___________________________________________________________________________
 //                         SUPRESSION COMPTE AJAX
@@ -146,17 +122,15 @@ var lastClickedUserId = null;
 
 document.querySelectorAll('.user_print').forEach(item => {
     item.addEventListener('click', function() {
-        var userId = this.getAttribute('data-id'); // Stockez l'userId du dernier contact cliqué
-
-        console.log("userId = " + userId);
+        var userId = this.getAttribute('data-id'); // Stocke l'userId du dernier contact cliqué
 
         lastClickedUserId = userId;
 
         var h2 = document.getElementById("destinataireChoisi");
         h2.innerHTML = "<h2 style='font-size: 20px;'>" + userId + "</h2>";
         
-        // Récupération de l'email de l'utilisateur de la session (à adapter selon votre méthode de récupération)
-        var emailUtilisateur; // Remplacez par le véritable email
+        
+        var emailUtilisateur; 
 
         fetch('AchargerMessage.php', {
             method: 'POST',
@@ -186,14 +160,13 @@ document.querySelectorAll('.user_print').forEach(item => {
                 var emailSession = messageData[4]; // Email de la session
 
                 
-
+                //Trie tous les messages pour la conversation du userId
                 if ((userId == emmeteur && emailSession == destinataire) || (userId == destinataire && emailSession == emmeteur)) {
                     var messageElement = document.createElement("div");
 
+                    //Creation des messages
                     messageElement.textContent = messageContent;
-
                     messagesContainer.appendChild(messageElement);
-
                     messageElement.style.display = "inline-block";
                     messageElement.style.border = "1px solid black";
                     messageElement.style.borderRadius = "20px";
@@ -220,6 +193,7 @@ document.querySelectorAll('.user_print').forEach(item => {
 
                         if(!messageElement.messageClicked){
 
+                            //creation de la date
                             var dateElement = document.createElement("div");
                             dateElement.textContent = dateEnvoie;
                             dateElement.style.fontSize = "12px";
@@ -274,9 +248,9 @@ document.querySelectorAll('.user_print').forEach(item => {
     });
 });
 
-console.log("emailUtilisateur = "+emailUtilisateur);
-var supprimerProfil = document.getElementById("supprimerProfil");
 
+//option supprimer un profil
+var supprimerProfil = document.getElementById("supprimerProfil");
 supprimerProfil.addEventListener("click", function(event) {
     
     var ok;
@@ -291,42 +265,13 @@ supprimerProfil.addEventListener("click", function(event) {
 });
 
 
-/*
-
-function verifierBannissement() {
-    var emailUtilisateur;
-   
-
-    const formData = new FormData();
-    formData.append('email', emailUtilisateur);
-
-    fetch('votre_script.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.utilisateurBanni) {
-            return true;
-        } else if (data.utilisateurBanni === false) {
-            return false;
-        } else {
-            console.log("Une erreur est survenue : " + data.error);
-        }
-    })
-    .catch(error => {
-        console.error('Erreur:', error);
-        console.log("Une erreur est survenue lors de la vérification.");
-    });
-}
 
 
-console.log("verifierBannissement = "+verifierBannissement());*/
 
 
+
+//option banni utilisateur
 var bannirProfil = document.getElementById("bannirProfil");
-
-//estBanni(emailUtilisateur)
 bannirProfil.addEventListener("click", function(event) {
 
     var ok;
@@ -338,8 +283,8 @@ bannirProfil.addEventListener("click", function(event) {
 
 });
 
+//option debanni utilisateur
 var debannirProfil = document.getElementById("debannirProfil");
-
 debannirProfil.addEventListener("click", function(event) {
 
     var ok;
@@ -351,12 +296,3 @@ debannirProfil.addEventListener("click", function(event) {
 
 });
 
-
-
-
-
-
-
-   
-
-    
