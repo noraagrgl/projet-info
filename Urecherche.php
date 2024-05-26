@@ -1,13 +1,12 @@
 <?php
     session_start();
-    
+    // Vérifie si l'utilisateur est connecté
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: acceuil.html");
     exit;
     }
 
     $abonnement = $_SESSION['abonnement'];
-    error_log("______________________________________________Session abonnement = ".$abonnement);
 ?>
 
 
@@ -24,7 +23,7 @@
 <body>
 
    <div id="containerA">
-        
+    <!-- Boutons de navigation -->
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
@@ -61,10 +60,6 @@
 
 
 
-
-
-
-
     <div id="pageRecherche">
 
         <div id="sectionGauche">
@@ -72,7 +67,7 @@
             <div id="logoDiv">
                 <img id="logoImage" src="image/logoCYrencontre.png" alt="logo du site">
             </div>
-
+            <!-- Critères de recherche -->
             <div id="critere">
                 <form action="UformulaireRecherche.php" method="POST" id="rechercheForm">
                     <label for="couleur_cheveux">Choisissez la couleur de cheveux recherché:</label><br>
@@ -147,7 +142,7 @@
                 
 
             </div>
-
+            <!-- Affichage pub -->
             <div id="containerPub2" >
                 <span class="pub"> <img src="image/pub2.jpg" alt="publicité2netlix" class="pubSection2" > </span>
                 <span class="pub" > <img src="image/pub3.jpg" alt="publicité3coca" class="pubSection2" > </span>
