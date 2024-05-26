@@ -22,6 +22,7 @@ if (isset($_GET['email'])) {
         if ($ligne[0] === $email) {
             $userFound = true;
             // Récupération des informations de l'utilisateur depuis le fichier
+            $email = $ligne[0];
             $num = $ligne[1];
             $pseudo = $ligne[2];
             $mdp = $ligne[3];
@@ -48,12 +49,13 @@ if (isset($_GET['email'])) {
         exit;
     }
 
+
     
     $_SESSION["AdminConvEmail"] = $email;
 
 
 
-
+    
 
 
 ?>
@@ -66,6 +68,7 @@ if (isset($_GET['email'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/css" href="js-css/Autilisateur.css">
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
     
 </head>
 <body>
@@ -78,7 +81,7 @@ if (isset($_GET['email'])) {
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -145,8 +148,8 @@ if (isset($_GET['email'])) {
                 </form>
             <?php else: ?>
                 <a href="Autilisateur.php?email=<?= htmlspecialchars($email) ?>&edit=true">(Modifier le profil)</a>
-                <h1>Profil de <?= htmlspecialchars($pseudo) ?></h1>
-                <img src="image/<?= htmlspecialchars($photo) ?>" alt="Photo de profil" class="image">
+                <h2>Profil de <?= htmlspecialchars($pseudo) ?></h2>
+                <img src="image/<?= htmlspecialchars($photo) ?>" alt="Photo de profil" class="Pimage">
                 <p><b>Email:</b> <?= htmlspecialchars($email) ?></p>
                 <p><b>Numéro de téléphone:</b> <?= htmlspecialchars($num) ?></p>
                 <p><b>Pseudo:</b> <?= htmlspecialchars($pseudo) ?></p>
@@ -160,84 +163,84 @@ if (isset($_GET['email'])) {
                 <p><b>Abonnement:</b> <?= htmlspecialchars($abonnement) ?></p>
                 <p><b>Date d'inscription:</b> <?= htmlspecialchars($date_inscription) ?></p>
             <?php endif; ?>
-        </div>
+        </div> 
 
     <div id="Amessagerie"></div>
 
-  <div id="containerMessagerie">
-      <div id="contacts">
-        <h2>CONTACTS</h2>
-        <div id="contactErreur"></div>
+
+    <div id="boxMessagerie">
+        <div id="containerMessagerie">
+            <div id="contacts">
+                <h2>CONTACTS</h2>
+                <div id="contactErreur"></div>
 
 
 
-     <?php
-            
-            $fichier2 = fopen("data/bannissement.txt", "r");
-            $bannis = [];
-            while (($email = fgets($fichier2)) !== false) {
-                $bannis[] = trim($email);
-            }
-            fclose($fichier2);
-
-            $fichier = fopen("data/utilisateurs.txt", "r");
-
-            //Lecture du fichier Ligne par Ligne
-            while (($Ligne = fgets($fichier)) !== false) {
-                $Ligne = explode(";", trim($Ligne));
-
-                //Vérification des indices et !=sexe et ==type_relation
-                if (isset($Ligne[4]) && isset($Ligne[8])) {
-                    if ( htmlspecialchars($sexe) != $Ligne[4] && htmlspecialchars($type_relation) == $Ligne[8]) {
-                        //Verification si l'utilisateur est banni
-                        if (!in_array($Ligne[0], $bannis)) {
-                      ?>
-                      <!--<div id="user_print" onclick="contact(this)">-->
-                      <div class="user_print active" data-id="<?= $Ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
-                          <p><img src="image/<?= $Ligne[10] ?>" class="image"><b><?= $Ligne[2] ?></b></p>
-                      </div>
-                      <?php
+                    <?php
+                        
+                        $fichier2 = fopen("data/bannissement.txt", "r");
+                        $bannis = [];
+                        while (($Email = fgets($fichier2)) !== false) {
+                            $bannis[] = trim($Email);
                         }
-                    }
-                }
-            }
-            fclose($fichier);
-        ?>
+                        fclose($fichier2);
+
+                        $fichier = fopen("data/utilisateurs.txt", "r");
+
+                        //Lecture du fichier Ligne par Ligne
+                        while (($Ligne = fgets($fichier)) !== false) {
+                            $Ligne = explode(";", trim($Ligne));
+
+                            //Vérification des indices et !=sexe et ==type_relation
+                            if (isset($Ligne[4]) && isset($Ligne[8])) {
+                                if ( htmlspecialchars($sexe) != $Ligne[4] && htmlspecialchars($type_relation) == $Ligne[8]) {
+                                    //Verification si l'utilisateur est banni
+                                    if (!in_array($Ligne[0], $bannis)) {
+                                  ?>
+                                  <!--<div id="user_print" onclick="contact(this)">-->
+                                  <div class="user_print active" data-id="<?= $Ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
+                                      <p><img src="image/<?= $Ligne[10] ?>" class="image"><b><?= $Ligne[2] ?></b></p>
+                                  </div>
+                                  <?php
+                                    }
+                                }
+                            }
+                        }
+                        fclose($fichier);
+                    ?>
+
+                </div>
+
+                <div id="conversation">
+                    <h2>CONVERSATION</h2>
+                    
+                    <div id="zone_message">
+                    <div id="destinataireChoisi">
+                        <p>Bienvenue sur la messagerie de CY-Rencontres, et voici les contacts que vous pouvez sélectionner</p>
+                        <div id="containerlogo"><img id="logoMessagerie" src="image/messagerie.png" alt="Logo de la messagerie"></div>
+                    </div>
+
+                    <div id="messagesContainer">
+                        
+                    </div>
 
 
-
-
-      </div>
-
-        
-      <div id="conversation">
-        <h2>CONVERSATION</h2>
-        
-        <div id="zone_message">
-          <div id="destinataireChoisi">
-            <p>Bienvenue sur la messagerie de CY-Rencontres, et voici les contacts que vous pouvez sélectionner</p>
-            <div id="containerlogo"><img id="logoMessagerie" src="image/messagerie.png" alt="Logo de la messagerie"></div>
-          </div>
-
-          <div id="messagesContainer">
-            
-          </div>
-
-
+                </div>
+            </div>
         </div>
-
-   
+   </div>
 
     <div>
         <div id="containerBouton">
             <span class="boutonUtilisateur"><a href="Ugestion.php">Page utilisateurs</a></span>
             <span class="boutonUtilisateur"><button id="bannirProfil">Bannir l'utilisateur</button></span>
+            <span class="boutonUtilisateur"><button id="debannirProfil">Débannir l'utilisateur</button></span>
             <span  class="boutonUtilisateur"><button id="supprimerProfil">Supprimer le compte</button></span>
         </div>
     </div>
 
 
-    <script type="text/javascript">
+   <script type="text/javascript">
         var emailUtilisateur = "<?php echo htmlspecialchars($email); ?>";
     </script>
 
