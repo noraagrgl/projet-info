@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+// Verrification pour la déconnexion
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: acceuil.html");
     exit;
 }
 
+// Met a jour l'abonnement
 function updateAbonnement($email, $newAbonnement) {
     $file = 'data/utilisateurs.txt';
 
@@ -35,7 +37,7 @@ function updateAbonnement($email, $newAbonnement) {
 
     return true;
 }
-
+// Gestion de l'abonnement
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['abonnement'])) {
     $newAbonnement = $_POST['abonnement'];
 
@@ -104,6 +106,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['abonnement'])) {
     <h1>Paramètres</h1>
 
     <?php
+    //Affichage de tous les éléments pour l'abonnement
     if ($_SESSION['abonnement'] === 'gratuit') {
         // Contenu pour les utilisateurs avec un abonnement gratuit
         echo '<h3>Vous avez un abonnement gratuit. Vous pouvez choisir un abonnement payant :</h3>';
@@ -128,7 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['abonnement'])) {
         echo '<p>Type d\'abonnement : ' . $_SESSION['abonnement'] . '</p>';
 
 
-        error_log('___________________________SESSION[date_abonnement] = '.$_SESSION['date_abonnement']);
+   
 
 
         
@@ -157,7 +160,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['abonnement'])) {
 
         echo '<p>Votre abonnement expire le : ' . $dateExpirationFormattee . '</p>';
 
-        // Vous pouvez ajouter d'autres détails de l'abonnement payant ici...
         
         $_SESSION['dateExpiration'] = $dateExpirationFormattee;
     }
