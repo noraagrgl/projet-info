@@ -2,13 +2,13 @@
     session_start();
     
 
-
+    // Verification de la déconnexion
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: acceuil.html");
     exit;
    
     }
-
+    // Accès seulement pour les gens qui ont un abononement payant
     if($_SESSION['abonnement']=='gratuit'){
       header("location: utilisateur.php");
     }
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
-  <div id="containerA">
+  <div id="containerA"><!-- Barre de sélection -->
         
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
@@ -71,7 +71,7 @@
 
 
             <?php
-                  
+            // N'affiche pas les banni
               $fichier2 = fopen("data/bannissement.txt", "r");
               $bannis = [];
               while (($email = fgets($fichier2)) !== false) {
@@ -113,7 +113,7 @@
       <div id="conversation">
         <h2>CONVERSATION</h2>
         
-        <div id="zone_message">
+        <div id="zone_message"><!-- Zone de conversation avant d'avoir cliqué sur un contact -->
           <div id="destinataireChoisi">
             <p>Bienvenue sur la messagerie de CY-Rencontres, et voici les contacts que vous pouvez sélectionner</p>
             <div id="containerlogo"><img id="logoMessagerie" src="image/messagerie.png" alt="Logo de la messagerie"></div>
