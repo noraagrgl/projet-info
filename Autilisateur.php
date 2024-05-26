@@ -1,17 +1,17 @@
 <?php
 session_start();
-
+// Verif pour la déconnexion
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: acceuil.html");
     exit;
 }
-
+// Pour savoir si on est en mode modification ou nn
 if (isset($_GET['edit']) && $_GET['edit'] == "true") {
     $_SESSION['edit_mode'] = true;
 } else {
     $_SESSION['edit_mode'] = false;
 }
-
+// Recupere toutes les informations d'une personne pour es afficher
 if (isset($_GET['email'])) {
     $email = $_GET['email'];
     $userFound = false;
@@ -72,6 +72,7 @@ if (isset($_GET['email'])) {
     
 </head>
 <body>
+    <!-- barre séléction -->
    <div id="containerA">
         
       <div class="bouton">
@@ -109,7 +110,7 @@ if (isset($_GET['email'])) {
     </div>
 
     <div id="containerB">
-        <div id="Lprofil">
+        <div id="Lprofil"><!-- mode modification profil -->
             <?php if($_SESSION['edit_mode']): ?>
                 <form action="Amodifier_profil.php" method="POST">
 
@@ -162,7 +163,7 @@ if (isset($_GET['email'])) {
                 <p><b>Description:</b> <?= htmlspecialchars($description) ?></p>
                 <p><b>Abonnement:</b> <?= htmlspecialchars($abonnement) ?></p>
                 <p><b>Date d'inscription:</b> <?= htmlspecialchars($date_inscription) ?></p>
-            <?php endif; ?>
+            <?php endif; ?><!-- mode non modification -->
         </div> 
 
     <div id="Amessagerie"></div>
@@ -177,7 +178,7 @@ if (isset($_GET['email'])) {
 
 
                     <?php
-                        
+                        //n'affiche pas en cas de banissement
                         $fichier2 = fopen("data/bannissement.txt", "r");
                         $bannis = [];
                         while (($Email = fgets($fichier2)) !== false) {
@@ -195,7 +196,7 @@ if (isset($_GET['email'])) {
                             if (isset($Ligne[4]) && isset($Ligne[8])) {
                                 if ( htmlspecialchars($sexe) != $Ligne[4] && htmlspecialchars($type_relation) == $Ligne[8]) {
                                     //Verification si l'utilisateur est banni
-                                    if (!in_array($Ligne[0], $bannis)) {
+                                    if (!in_array($Ligne[0], $bannis)) { 
                                   ?>
                                   <!--<div id="user_print" onclick="contact(this)">-->
                                   <div class="user_print active" data-id="<?= $Ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
@@ -241,7 +242,7 @@ if (isset($_GET['email'])) {
 
 
    <script type="text/javascript">
-        var emailUtilisateur = "<?php echo htmlspecialchars($email); ?>";
+        var emailUtilisateur = "<?php echo htmlspecialchars($email); ?>"; //envoie de la variable a fichier externe Autilisateur.js
     </script>
 
    
