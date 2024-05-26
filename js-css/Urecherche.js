@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
 
-    //var abonnement = "<?php echo $abonnement; ?>";
-
-    //console.log("_____________abonnement = "+abonnement);
-
+    // Vérifie si l'abonnement n'est pas gratuit, puis masque les publicités
     if (abonnement !== "gratuit") {
         var pubs = document.querySelectorAll(".pub");
         pubs.forEach(function(pub) {
@@ -17,10 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     document.getElementById("rechercheForm").addEventListener("submit", function(event) {
         event.preventDefault();
-        
+        // Récupère la valeur saisie dans le champ de recherche
         var pseudo = document.getElementById("recherchePseudo").value;
         console.log("bonjour " + pseudo);
-        
+        // Sélectionne la liste des profils pour ajouter les résultats de la recherche
         var liste = document.getElementById("listeProfil");
 
         // Réinitialiser la div "listeProfil" en supprimant tous les enfants
@@ -39,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
             try {
                 var data = JSON.parse(text); // Essayez d'analyser la réponse en JSON
                 if (data.success) {
+                    // Si la recherche est réussie, affiche les profils correspondants
                     data.utilisateurs.forEach(utilisateur => {
                         var profil = document.createElement("div");
                         profil.style.display = "inline-block";                   
@@ -51,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         profil.style.padding = "15px";
                         profil.style.textAlign = "center";
                         profil.style.fontSize = "25px";
-
+                        // Ajoute le pseudo de l'utilisateur avec des styles
                         var pseudoElement = document.createElement("p");
                         pseudoElement.textContent = utilisateur.pseudo;
                         pseudoElement.style.marginBottom = "10px";
@@ -69,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         photoElement.style.borderRadius = "50%";
                         photoElement.style.objectFit = "cover";
                         profil.appendChild(photoElement);
-
+                        // Crée un lien pour consulter le profil de l'utilisateur
                         var linkElement = document.createElement("a");
                         linkElement.href = "UconsulterProfil.php?email=" + encodeURIComponent(utilisateur.email);
                         linkElement.textContent = "Consulter le profil";
@@ -80,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         liste.appendChild(profil);
                     });
                 } else {
+                    // Si la recherche échoue, affiche un message d'erreur
                     var messageElement = document.createElement("p");
                     messageElement.textContent = data.message;
                     messageElement.style.color = "red"; 
