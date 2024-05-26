@@ -14,7 +14,7 @@ if (isset($_POST["email"]) && isset($_POST["mot_de_passe"])) {
         if ($_POST["email"] == $ligne[0]) {
             // Vérification du mot de passe (utilisez password_verify si les mots de passe sont hachés)
             if ($_POST["mot_de_passe"] == $ligne[3]) {
-                // Ouverture de la session
+
                 session_start();
 
                 // Stocke les données de l'utilisateur dans la session
