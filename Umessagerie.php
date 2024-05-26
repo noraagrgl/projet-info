@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/CSS" href="js-css/Umessagerie.css">
     <!-- <sript src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></sript> -->
     <!--<script type="text/javascript" src="js-css/Umessagerie.js"></script>-->
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
   <div id="containerA">
@@ -34,7 +35,7 @@
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -59,6 +60,7 @@
         <span id="Deconnexion" class="bouton"> <a href="deconnexion.php" class="a">Déconnexion</a></span>
       </div>
         
+    </div>
 
     <div id="containerMessagerie">
       <div id="contacts">
@@ -91,7 +93,7 @@
                         ?>
                         <!--<div id="user_print" onclick="contact(this)">-->
                         <div class="user_print active" data-id="<?= $ligne[0] ?>"><!--On peut rajouter d'autres champs si on le souhaite -->
-                            <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?>   <span class="boutonBloquer" ><button type="submit">Bloquer utilisateur</button></b></p></span>
+                            <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?>   <span class="boutonBloquer" ></b></p></span>
                         </div>
                         <?php
                           }
@@ -122,7 +124,7 @@
           </div>
 
 
-        </div>
+        <!-- </div> -->
 
 
 
