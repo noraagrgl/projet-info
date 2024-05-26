@@ -9,12 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     payerButton.addEventListener('click', function() {
         let abonnementSelected = false;
+        // Vérifie si un abonnement est sélectionné
         abonnements.forEach(function(abonnement) {
             if (abonnement.checked) {
                 abonnementSelected = true;
             }
         });
-
+        // Affiche les champs de paiement et le bouton de changement d'abonnement si un abonnement est sélectionné
         if (abonnementSelected) {
             paymentFields.style.display = 'block';
             changeAbonnementButton.style.display = 'block';
@@ -25,12 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     changeAbonnementButton.addEventListener('click', function() {
         let newAbonnement = '';
+        // Récupère la valeur du nouvel abonnement sélectionné
         abonnements.forEach(function(abonnement) {
             if (abonnement.checked) {
                 newAbonnement = abonnement.value;
             }
         });
-
+        // Effectue une requête pour mettre à jour l'abonnement sur le serveur
         if (newAbonnement !== '') {
             fetch('Uparametre.php', {
                 method: 'POST',
@@ -81,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     expiryDateInput.addEventListener('blur', function() {
         const [month, year] = this.value.split('/');
+        // Vérifie si la date d'expiration est valide
         if (parseInt(month, 10) < 1 || parseInt(month, 10) > 12 || month.length > 2 || year.length > 2) {
             alert('Veuillez entrer une date d\'expiration valide (MM/AA).');
             this.value = '';
