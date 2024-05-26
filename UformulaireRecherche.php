@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-// Activez les rapports d'erreurs pour le débogage
+// Rapports d'erreurs pour le débogage
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // En-tête JSON
 header('Content-Type: application/json');
 
-// Vérifiez que le pseudo est défini et qu'il contient au moins 3 lettres
+// Vérifie que le pseudo est défini et qu'il contient au moins 3 lettres
 if (isset($_POST['recherchePseudo']) && strlen($_POST['recherchePseudo']) >= 3) {
     $pseudoRecherche = $_POST['recherchePseudo'];
 } else {
@@ -18,7 +18,7 @@ if (isset($_POST['recherchePseudo']) && strlen($_POST['recherchePseudo']) >= 3) 
 
 
 
-
+// N'affiche pas s'il est banni
 $fichier2 = fopen("data/bannissement.txt", "r");
 $bannis = [];
 while (($email = fgets($fichier2)) !== false) {
@@ -52,7 +52,7 @@ if (($fichier = fopen("data/utilisateurs.txt", "r")) !== false) {
     fclose($fichier);
 }
 
-// Si des utilisateurs ont été trouvés, les renvoyer
+// Si des utilisateurs ont été trouvés, les renvoyer au fichier Urecherche.php
 if (count($utilisateurs) > 0) {
     echo json_encode(array('success' => true, 'utilisateurs' => $utilisateurs));
 } else {
