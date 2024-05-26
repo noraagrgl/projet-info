@@ -7,7 +7,7 @@
     }
 
     $abonnement = $_SESSION['abonnement'];
-    
+    error_log("______________________________________________Session abonnement = ".$abonnement);
 ?>
 
 
@@ -19,10 +19,11 @@
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="js-css/Urecherche.css">
     <!-- <script src="Urecherche.js"></script> -->
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
 
-  <div id="containerA">
+   <div id="containerA">
         
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
@@ -31,7 +32,7 @@
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -69,7 +70,7 @@
         <div id="sectionGauche">
             <!-- <h1>SECTION GAUCHE</h1> -->
             <div id="logoDiv">
-                <img id="logoImage" src="image/logo.png" alt="logo du site">
+                <img id="logoImage" src="image/logoCYrencontre.png" alt="logo du site">
             </div>
 
             <div id="critere">
@@ -134,6 +135,7 @@
                       
                     </div>
                     <div id="loupeDiv">
+                           
                             <button type="submit" id="boutonSubmit">
                                 <img id="imageLoupe" src="image/loupe.jpg" alt="loupe">
                             </button>
@@ -158,7 +160,6 @@
                 <h1>Liste des profils recherchés:</h1>
                 <ul>
 
-                  
             </ul>
             </div>
 
@@ -168,9 +169,7 @@
     </div>
 
     <script>
-        
         var abonnement = "<?php echo $abonnement; ?>";
-        
     </script>
 
     <script src="js-css/Urecherche.js"></script>
