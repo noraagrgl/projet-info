@@ -16,6 +16,7 @@
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="js-css/Ugestion.css">
     <!-- <script src="js-css/Ugestion.js"></script> -->
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
 
@@ -28,7 +29,7 @@
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
