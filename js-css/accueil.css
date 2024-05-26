@@ -1,11 +1,10 @@
 body{
 	background-image: url("../image/fond2.jpg");
-	font-family: fantasy;
+	font-family: Arial;
 	
 	background-position: center;
 
 }
-
 
 
 h1{
@@ -65,10 +64,10 @@ p{
 .bouton{
 	text-align: center;
 	width: 250px;
-	border: solid darkred 3px;
-	border-radius: 7%;
+	border-radius: 30px;
 	background-color: white;
 	padding: 20px;
+	box-shadow: 0 0 15px rgba(0,0,0,0.3);
 }
 
 .bouton:hover{
@@ -76,5 +75,5 @@ p{
 }
 
 .bouton:active{
-	background-color: gray;
+	background-color: lightgray;
 }
