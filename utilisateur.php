@@ -19,6 +19,7 @@
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="js-css/utilisateur.css">
     <!-- <script src="js-css/utilisateur.js"></script> -->
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
 
@@ -31,7 +32,7 @@
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -65,43 +66,105 @@
       <h1>Bienvenue <?= $_SESSION['pseudo'] ?> </h1>
       <br><br><br>
 
+      <div id="messageConsulte">
 
+        <?php
 
-      <?php
-            
-            $fichier2 = fopen("data/bannissement.txt", "r");
-            $bannis = [];
-            while (($email = fgets($fichier2)) !== false) {
-                $bannis[] = trim($email);
+            $emailSession = trim($_SESSION['email']);
+            $fichierConsultations = "data/consulterProfil.txt";
+            $fichierBannissement = "data/bannissement.txt";
+            $fichierUtilisateurs = "data/utilisateurs.txt";
+
+            $consultations = [];
+            $contenuFichier = [];
+
+            // Lire le fichier pour trouver les consultations et conserver les lignes non pertinentes
+            $handle = fopen($fichierConsultations, "r");
+            if ($handle) {
+                while (($ligne = fgets($handle)) !== false) {
+                    $colonnes = explode(";", trim($ligne));
+                    if (count($colonnes) == 2) {
+                        if ($colonnes[0] === $emailSession) {
+                            $consultations[] = $colonnes[1];
+                        } else {
+                            $contenuFichier[] = $ligne; // Conserver les lignes qui ne correspondent pas
+                        }
+                    }
+                }
+                fclose($handle);
+            } else {
+                echo "<p class=\"message\">Impossible d'ouvrir le fichier des consultations.</p>";
+                exit;
             }
-            fclose($fichier2);
 
-            $fichier = fopen("data/utilisateurs.txt", "r");
+            if (!empty($consultations)) {
+                echo "<h2 class=\"message\">Pendant votre absence, les utilisateurs suivants ont consulté votre profil :</h2>";
+                foreach ($consultations as $emailConsultant) {
+                    echo "<p class=\"message\">$emailConsultant a consulté votre profil.</p>";
+                }
 
-            //Lecture du fichier ligne par ligne
-            while (($ligne = fgets($fichier)) !== false) {
-                $ligne = explode(";", trim($ligne));
+                // Réécrire le fichier sans les lignes affichées
+                $handle = fopen($fichierConsultations, "w");
+                if ($handle) {
+                    foreach ($contenuFichier as $ligne) {
+                        fwrite($handle, $ligne);
+                    }
+                    fclose($handle);
+                } else {
+                    echo "<p class=\"message\">Impossible de mettre à jour le fichier des consultations.</p>";
+                }
+            } else {
+                echo "<p class=\"message\">Personne n'a consulté votre profil pendant votre absence.</p>";
+            }
+        ?>
 
-                //Vérification des indices et !=sexe et ==type_relation
-                if (isset($ligne[4]) && isset($ligne[8])) {
-                    if ($_SESSION["sexe"] != $ligne[4] && $_SESSION["type_relation"] == $ligne[8]) {
-                        //Verification si l'utilisateur est banni
-                        if (!in_array($ligne[0], $bannis)) {
-                            ?>
+        </div>
+
+        <?php
+
+
+            // Lire le fichier de bannissement
+            $handle = fopen($fichierBannissement, "r");
+            $bannis = [];
+            if ($handle) {
+                while (($email = fgets($handle)) !== false) {
+                    $bannis[] = trim($email);
+                }
+                fclose($handle);
+            } else {
+                echo "<p>Impossible d'ouvrir le fichier de bannissement.</p>";
+                exit;
+            }
+
+            // Lire le fichier des utilisateurs
+            $handle = fopen($fichierUtilisateurs, "r");
+            if ($handle) {
+                while (($ligne = fgets($handle)) !== false) {
+                    $ligne = explode(";", trim($ligne));
+
+                    // Vérification des indices et != sexe et == type_relation
+                    if (isset($ligne[4]) && isset($ligne[8])) {
+                        if ($_SESSION["sexe"] != $ligne[4] && $_SESSION["type_relation"] == $ligne[8]) {
+                            // Vérification si l'utilisateur est banni
+                            if (!in_array($ligne[0], $bannis)) {
+                                ?>
                                 <div id="user_print">
                                     <p><img src="image/<?= $ligne[10] ?>" class="image"><b><?= $ligne[2] ?></b></p>
                                     <p><?= $ligne[9] ?></p>
                                     <a href="Umessagerie.php">Envoyer un message</a>
                                 </div>
-                            <?php
+                                <?php
+                            }
                         }
                     }
                 }
+                fclose($handle);
+            } else {
+                echo "<p>Impossible d'ouvrir le fichier des utilisateurs.</p>";
+                exit;
             }
-            fclose($fichier);
         ?>
-
-      <!--<p><b><?= $user_print['pseudo'] ?></b></p>-->
+ 
 
     <script>
         var abonnement = "<?php echo $abonnement; ?>";
