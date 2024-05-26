@@ -2,7 +2,7 @@
 session_start();
 
 if($_SERVER["REQUEST_METHOD"] == "POST") {
-
+    // Récupère les nouvelles valeurs des champs du formulaire ou les laisse vides si elles ne sont pas définies
     $nouveauPseudo = isset($_POST['pseudo']) ? $_POST['pseudo'] : "";
     $nouvelleDescription = isset($_POST['description']) ? $_POST['description'] : "";
     $nouveauMotDePasse = isset($_POST['mdp']) ? $_POST['mdp'] : "";
@@ -17,11 +17,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ouvrir le fichier txt en mode lecture et écriture
     $fichier = file("data/utilisateurs.txt");
     $nouveauFichier = "";
-
+   // Parcours chaque ligne du fichier
     foreach ($fichier as $ligne) {
         $donnees = explode(";", trim($ligne));
+   // Vérifie si l'email de la ligne correspond à celui de l'utilisateur connecté
         if ($donnees[0] == $_SESSION['email']) {
-            // Remplacer l'ancienne ligne par la nouvelle ligne mise à jour
+   // Remplacer l'ancienne ligne par la nouvelle ligne mise à jour
             $donnees[2] = ($nouveauPseudo !== "") ? $nouveauPseudo : $donnees[2];
             $donnees[9] = ($nouvelleDescription !== "") ? $nouvelleDescription : $donnees[9];
             $donnees[3] = ($nouveauMotDePasse !== "") ? $nouveauMotDePasse : $donnees[3];
