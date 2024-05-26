@@ -21,7 +21,7 @@
 <body>
 
      <div id="containerA">
-        
+      <!-- Boutons de navigation -->
       <div class="bouton">
         <img src="image/accueil.png" alt="image d'accueil" class="imageSelection"/>
         <span id="Accueil" class="bouton"> <a href="utilisateur.php" class="a">Accueil</a></span>
@@ -66,6 +66,7 @@
                     $ligne = explode(";", trim($ligne));
                     ?>
                     <li>
+                        <!-- Affiche les informations de l'utilisateur et un lien pour consulter son profil -->
                         <p><img src="image/<?= $ligne[10] ?>" class="image"><b>Pseudo:</b> <?= $ligne[2] ?> <b>Adresse mail:</b> <?= $ligne[0] ?>
                         <a href="Autilisateur.php?email=<?= urlencode($ligne[0]) ?>">Consulter le profil</a></p>
                     </li>
@@ -90,6 +91,7 @@
                 // Diviser la ligne en éléments du tableau
                 $Ligne = explode(";", trim($Ligne));
                 ?>
+                <!-- Affiche les informations sur le signalement -->
                 <li>
                     <p><b>Emmeteur du signalement</b> <?= htmlspecialchars($Ligne[0]) ?>, 
                        <b>recepteur du signalement</b> <?= htmlspecialchars($Ligne[1]) ?>, 
