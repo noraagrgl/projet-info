@@ -1,5 +1,7 @@
 ### Introduction
-Notre site CY-Rencontres à été fait avec la contribution d'Éléonore GEORGEL et de Gabriel LEGROS.
+Notre site CY-Rencontres à été fait avec la contribution d'Éléonore GEORGEL et de Gabriel LEGROS et rendu le 26/05/2024.
+C'est un projet de fin de semestre 2, CY-TECH, preing-2.
+CY-Rencontres est un site de rencontre d'amour.
 
 ### Fonctionnalités
 Voici une liste des fonctionnalités de notre site:
@@ -23,4 +25,4 @@ localhost:8080/accueil.html
 
 ### Autres informations
 Notre site présente de nombreuses foncionnalités, mais en revanche, la possibilité de bloquer une personne n'est pas présente dans le site.
-De plus, dans la page recherche, par manque de temps, la possibilité de rechercher un profil par des attributs physique (exemple: couleur des yeux, couleur de cheveux...) est présente mais inutilisable.
+De plus, sur la page recherche, par manque de temps, la possibilité de rechercher un profil par des attributs physique (exemple: couleur des yeux, couleur de cheveux...) est présente mais inutilisable.
