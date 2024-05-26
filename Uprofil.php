@@ -21,6 +21,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CY-Rencontres</title>
     <link rel="stylesheet" type="text/CSS" href="js-css/Uprofil.css">
+    <link rel="icon" type="image/png" href="image/LOGOCY.png">
 </head>
 <body>
     <div id="containerA">
@@ -32,7 +33,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
 
       <div class="bouton">
         <img src="image/loupe.jpg" alt="image recherhce" class="imageSelection"/>
-        <span id="Profil" class="bouton"> <a href="Urecherche.php">Recherche</a></span>
+        <span id="Profil" class="bouton"> <a href="Urecherche.php" class="a">Recherche</a></span>
       </div>
 
       <div class="bouton">
@@ -96,7 +97,7 @@ if(isset($_GET['edit']) && $_GET['edit'] === 'true') {
                 <input type="submit" value="Enregistrer">
             </form>
         <?php else: ?>
-            <img src="image/<?= $_SESSION['photo_profil'] ?>">
+            <img class="image" src="image/<?= $_SESSION['photo_profil'] ?>">
             <p><b>Pseudo:</b> <?= $_SESSION['pseudo'] ?> <a href="Uprofil.php?edit=true">(Modifier)</a></p>
             <p><b>Description:</b> <?= $_SESSION['description'] ?></p>
             <p><b>Mot de passe:</b> <?= $_SESSION['mdp'] ?></p>
