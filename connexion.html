@@ -11,11 +11,13 @@
     <h1>Connexion</h1>
     <div id="container">
         <form id="connexionForm" action="connexion.php" method="post">
+            <!-- Champ pour les identifiants -->
             <label for="email">Email : </label><br>
             <input class="champs" type="text" id="email" name="email" required><br><br>
             <label for="mot_de_passe">Mot de passe :</label><br>
             <input class="champs" type="password" id="mot_de_passe" name="mot_de_passe" required><br><br>
             <span id="errorMessage" class="error"></span><br>
+            <!-- Bouton pour soumettre le formulaire -->
             <input id="boutonEnvoie" type="submit" value="Se connecter">
         </form>
 
