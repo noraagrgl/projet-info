@@ -90,7 +90,6 @@ function handleClick() {
 
 
 
-
 //___________________________________________________________________________
 //                    FONCTION estBLOQUER UTILISATEUR AJAX
 //___________________________________________________________________________
@@ -111,11 +110,6 @@ function estBloque(UserId) {
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("UserId=" + encodeURIComponent(UserId));
 }
-
-
-
-
-
 
 
 
@@ -164,25 +158,6 @@ function sendMessage(UserId) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //___________________________________________________________________________
 //                            SELECTION CONTACT
 //___________________________________________________________________________
@@ -192,7 +167,7 @@ var nePasEnvoyer = 0;
 
 document.querySelectorAll('.user_print').forEach(item => {
     item.addEventListener('click', function() {
-        var userId = this.getAttribute('data-id'); // Stockez l'userId du dernier contact cliqué
+        var userId = this.getAttribute('data-id'); // Stocke l'userId du dernier contact cliqué
 
         lastClickedUserId = userId;
 
@@ -219,13 +194,12 @@ document.querySelectorAll('.user_print').forEach(item => {
 
         })
         .then(data => {
-            //console.log('Données reçues :', data);
 
             var emailSession = data[0];
 
-            // Afficher les messages dans l'interface utilisateur
+            // Affiche les messages dans l'interface utilisateur
             var messagesContainer = document.getElementById("messagesContainer");
-            messagesContainer.innerHTML = ""; // Effacer les anciens messages
+            messagesContainer.innerHTML = ""; // Efface les anciens messages
             
             data.messages.forEach(message => {
                 // Diviser la ligne en éléments en utilisant le délimiteur approprié
@@ -375,11 +349,7 @@ document.querySelectorAll('.user_print').forEach(item => {
                               }
                             });
 
-
                             messageClicked = true;
-
-
-                        
 
                         }
 
@@ -412,23 +382,13 @@ document.querySelectorAll('.user_print').forEach(item => {
                             messageClicked = true;
 
                         }
-
-
-                    
-
-
-
                         
                     }
                 });
 
-
-
-
-
-
+                //Partie innutilisable
                 //___________________________________________________________________________
-                //                        BOUTON BLOQUÉ UTILISATEUR
+                //     Partie innutilisable                  BOUTON BLOQUÉ UTILISATEUR
                 //___________________________________________________________________________
 
                 var boutonBloquer = document.getElementById("boutonBloquer");
@@ -441,16 +401,12 @@ document.querySelectorAll('.user_print').forEach(item => {
                     button.addEventListener("click", handleClick);
                 });
 
-               
-               
+                        
             });
         })
         .catch(error => {
             console.error('Erreur:', error);
         });
-
-
-
 
         fetch('UestBloque.php', {
         method: 'POST',
@@ -468,7 +424,6 @@ document.querySelectorAll('.user_print').forEach(item => {
         .then(data => {
             // Traitement des données de la deuxième réponse
             console.log('Réponse de la deuxième requête :', data);
-            // Maintenant vous pouvez vérifier si l'utilisateur est bloqué ou non
 
             if (data.bloqueSuccess === true) {
                 nePasEnvoyer = 1;
@@ -479,11 +434,6 @@ document.querySelectorAll('.user_print').forEach(item => {
         });
         
        
-
-
-
-
-
         //___________________________________________________________________________
         //                          BOUTON ENVOYER
         //___________________________________________________________________________
@@ -510,11 +460,5 @@ document.querySelectorAll('.user_print').forEach(item => {
 
     });;
 });
-
-
-
-
-
-
 
 
