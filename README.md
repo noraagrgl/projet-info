@@ -3,14 +3,14 @@
 ## Introduction
 Notre site CY-Rencontres à été fait avec la contribution d'Éléonore GEORGEL et de Gabriel LEGROS et rendu le 26/05/2024.
 C'est un projet de fin de semestre 2, CY-TECH, preing-2.
-CY-Rencontres est un site de rencontre d'amour.
+CY-Rencontres est un site de rencontre.
 
 ## Fonctionnalités
 Voici une liste des fonctionnalités de notre site:
 - Une recherche par pseudo
 - Modification du profil
 - Une messagerie interne au site (envoie de message, signalements de messages suspects)
-- Une gestion administrative (signalements de messages, bannissement d'un utilisateur, suppression de compte, avoir accès a tous les messages et la possibilité de les supprimer)
+- Une gestion administrative (signalements de messages, bannissement d'un utilisateur, suppression de comptes, avoir accès a tous les messages et la possibilité de les supprimer)
 - Un abonnement qui offre une utilisation du site sans pub et un accès à la messagerie
 
 ## Instalation
