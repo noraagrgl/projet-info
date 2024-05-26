@@ -1,6 +1,6 @@
 body{
   background-image: url("../image/fond2.jpg");
-  font-family: fantasy;
+  font-family: arial;
   
 
 }
@@ -69,7 +69,7 @@ h2{
 
 #listeUtilisateur{
   display: inline-block;
-  width: 900px;
+  width: 800px;
   height: 700px;
   background-color: white;
   border: 2px solid black;
@@ -77,4 +77,16 @@ h2{
   overflow: auto;
   margin:30px;
   padding: 10px;
+}
+
+#signalement{
+  display: inline-block;
+  width: 800px;
+  height: 700px;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 20px;
+  overflow: auto;
+  margin:30px;
+  padding: 30px;
 }
