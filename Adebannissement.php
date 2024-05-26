@@ -4,7 +4,7 @@
 //                        DEBANNISSEMENT D'UN COMPTE
 //___________________________________________________________________________
 
-// Création d'un autre fichier temporaire pour recopier tout du fichier original hormis le compte qu'on souhaite supprimer
+// Création d'un autre fichier temporaire pour recopier tout du fichier original hormis le compte qu'on souhaite supprimer (debannir)
 
 if (isset($_POST['email'])) {
 
@@ -20,7 +20,7 @@ if (isset($_POST['email'])) {
         while (($ligne = fgets($handle)) !== false) {           
             
             error_log("L'email est " . $email . " et la ligne est " . $ligne);
-            if ($email != trim($ligne)) { // Utilisation de trim pour chaque ligne lue
+            if ($email != trim($ligne)) {
                 fwrite($handleTemp, $ligne);
             }
 
