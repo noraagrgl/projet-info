@@ -1,7 +1,7 @@
 body{
 	background-image: url("../image/fondD.png");
 	font-family: arial;
-
+	
 }
 
 h1{
@@ -12,7 +12,7 @@ h1{
   width: 50px;
   height:50px;
   object-fit: cover;
-
+ 
   margin-right: 20px;
 }
 
@@ -39,27 +39,27 @@ h1{
 	display: flex;
 	height: 875px;
 	margin-top: 10px;
-
+	
 }
 
 #sectionGauche{
-
+	
 	text-align: center;
 	width: 300px;
 	border-right: 2px solid black;
-
+	
 }
 
 #sectionDroite{
-
+	
 	text-align: center;
 	width: 1600px;
 }
 
 #logoImage{
 
-	width: 100px;
-	height:100px;
+	width: 200px;
+	height:75px;
 	object-fit: cover;
 	border: solid black 2px;
 	border-radius: 15px;
@@ -86,10 +86,8 @@ h1{
 	width: 200px;
 	height:400px;
 	object-fit: cover;
-
-
 	margin: 10px;
-
+	
 }
 
 #rechercheDiv{
@@ -129,7 +127,7 @@ h1{
 	width: 75px;
 	height: 55px;
 	border-left:2px solid black;
-
+	
 }
 
 #boutonSubmit{
@@ -144,7 +142,7 @@ h1{
 	object-fit: cover;
 
 	border-radius: 50%;
-
+	
 }
 
 #containerPub2{
