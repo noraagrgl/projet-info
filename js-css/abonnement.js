@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const naissanceInput = document.getElementById("naissance");
     const form = document.querySelector("form");
 
+    // Gestion de l'affichage des champs de paiement en fonction de l'abonnement sélectionné
     abonnementOptions.forEach(option => {
         option.addEventListener("change", function() {
             if (this.value === "gratuit") {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    // Vérification de l'abonnement sélectionné au chargement de la page
     if (document.querySelector("input[name='abonnement']:checked").value === "gratuit") {
         paymentFields.style.display = "none";
         cardNumber.removeAttribute("required");
@@ -35,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         expiryDate.setAttribute("required", "required");
         cvc.setAttribute("required", "required");
     }
-
+    // Gestion de l'affichage des champs de paiement pour l'abonnement payant
     var abonnementsPayants = document.querySelectorAll('input[name="abonnement"][value="mensuel"], input[name="abonnement"][value="trimestriel"], input[name="abonnement"][value="annuel"]');
     var paiement = document.getElementById('paymentFields');
 
@@ -48,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
+    // Gestion de l'affichage des champs de paiement pour les abonnements gratuits
     var abonnementGratuit = document.querySelector('input[name="abonnement"][value="gratuit"]');
     abonnementGratuit.addEventListener('change', function() {
         if (this.checked) {
@@ -99,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         this.value = value;
     });
 
+    // Validation de l'âge lors de la soumission du formulaire
     form.addEventListener('submit', function(event) {
         const today = new Date();
         const birthDate = new Date(naissanceInput.value);
