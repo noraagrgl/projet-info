@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-error_log("header");
-
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("location: acceuil.html");
     exit;
 }
+
+// Recuperation des variables $_POST
 
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -31,10 +31,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     error_log("emailCible = ".$emailCible);
 
 
-    // Ouvrir le fichier txt en mode lecture et écriture
     $fichier = file("data/utilisateurs.txt");
     $nouveauFichier = "";
 
+    //Modification du fichier "data/utilisateurs.txt"
     foreach ($fichier as $ligne) {
         $donnees = explode(";", trim($ligne));
         if ($donnees[0] == $emailCible) {
@@ -57,10 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    // Réécrire le fichier avec les données mises à jour
+    // Réécriture du fichier avec les données mises à jour
     file_put_contents("data/utilisateurs.txt", $nouveauFichier);
     
-    // Rediriger l'utilisateur vers la page de profil
+    // Redirige l'utilisateur vers la page de profil
     header("Location: Autilisateur.php?email=" . urlencode($emailCible));
     exit;
 } else {
